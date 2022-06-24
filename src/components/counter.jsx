@@ -6,12 +6,20 @@ class Counter extends Component {
         tags: ['tag1', 'tag2', 'tag3', 'tag4']
     }
 
+    renderTags () {
+        if (this.state.tags === 0) return <p>There is no tag!</p>
+
+        return (
+            <ul>
+                {this.state.tags.map((tag, index) => <li key={index}>{tag}</li> )}
+            </ul>
+        )
+    }
+
     render() {
         return (
             <React.Fragment>
-                <ul>
-                    {this.state.tags.map(tag => <li>{tag}</li> )}
-                </ul>
+                { this.renderTags() }
             </React.Fragment>
         )
     }
