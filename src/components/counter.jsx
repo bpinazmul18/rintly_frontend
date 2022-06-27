@@ -3,12 +3,15 @@ import React, { Component } from 'react';
 class Counter extends Component {
 
     render() {
+        const {onIncrement, onDecrement, onDelete, counter} = this.props
+
         return (
             <React.Fragment>
                 <div className="m-2">
-                    {/* <button onClick={() => this.handleDecrement({ id: 1})} className="btn btn-secondary btn-sm"><i className="fa-solid fa-circle-minus"></i> Decrements</button> */}
+                    <button onClick={() => onDecrement(counter.id)} className="btn btn-secondary btn-sm"><i className="fa-solid fa-circle-minus"></i> Decrements</button>
                         <span className={this.getBadgeStyles()}>{this.counterSyles()}</span>
-                    <button onClick={() => this.props.handleIncrement(this.props.counter.id)} className="btn btn-secondary btn-sm"><i className="fa-solid fa-circle-plus"></i> Increment</button>
+                    <button onClick={() => onIncrement(counter.id)} className="btn btn-secondary btn-sm"><i className="fa-solid fa-circle-plus"></i> Increment</button>
+                    <button onClick={() => onDelete(counter.id)} className="btn btn-danger btn-sm mx-2">Delete</button>
                 </div>
             </React.Fragment>
         )
