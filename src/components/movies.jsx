@@ -10,7 +10,7 @@ class Movies extends Component {
 
      onHandleMovie = (id) => {
          const movies = this.state.movies.filter((movie) => movie._id !== id)
-         this.setState({ movies: movies })
+         this.setState({ movies })
 
          toast.success('😎 Successfully Delete!', {
             position: "top-right",
@@ -28,12 +28,15 @@ class Movies extends Component {
          this.setState({ movies: res.data})
      }
     render() {
+
         return (
             <div className="container movies-page py-5">
-                <p className='lead'>You have {this.state.movies.length} movies</p>
                 {
-                    this.state.movies.length > 0 && (
-                        <MovieTable handleMovie={this.onHandleMovie} movies={this.state.movies}/>
+                    this.state.movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
+                        <React.Fragment>
+                            <p className='lead'>Showing {this.state.movies.length} movies in the database.</p>
+                            <MovieTable handleMovie={this.onHandleMovie} movies={this.state.movies}/>
+                        </React.Fragment>
                     )
                 }
             </div>

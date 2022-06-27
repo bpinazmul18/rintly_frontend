@@ -1,13 +1,13 @@
 import './App.css';
-import Movies from './components/movies';
 import { ToastContainer } from 'react-toastify';
+import Counters from './components/counters';
 
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <div className="App">
-      <Movies/>
+    <div className="app">
+      <Counters/>
       <ToastContainer
           position="top-right"
           autoClose={5000}
