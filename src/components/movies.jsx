@@ -8,7 +8,7 @@ class Movies extends Component {
         movies: []
      }
 
-     onHandleMovie = (id) => {
+     handleMovie = (id) => {
          const movies = this.state.movies.filter((movie) => movie._id !== id)
          this.setState({ movies })
 
@@ -23,6 +23,15 @@ class Movies extends Component {
         })
      }
 
+     handleLiked = (movie) => {
+         const movies = [...this.state.movies]
+         const index = movies.indexOf(movie)
+
+         movies[index].liked = !movies[index].liked
+
+         this.setState({ movies })
+     }
+
      async componentDidMount () {
          const res = await fetchMovies()
          this.setState({ movies: res.data})
@@ -35,7 +44,7 @@ class Movies extends Component {
                     this.state.movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
                         <React.Fragment>
                             <p className='lead'>Showing {this.state.movies.length} movies in the database.</p>
-                            <MovieTable handleMovie={this.onHandleMovie} movies={this.state.movies}/>
+                            <MovieTable onHandleMovie={this.handleMovie} movies={this.state.movies} onLiked={this.handleLiked}/>
                         </React.Fragment>
                     )
                 }

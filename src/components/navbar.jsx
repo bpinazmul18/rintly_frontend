@@ -1,7 +1,7 @@
-const Navbar = ({ totalCounter }) => (
+const Navbar = () => (
     <nav className="navbar navbar-light bg-light">
         <div className="container-fluid">
-            <a className="navbar-brand" href="#">Navbar <span className='badge bg-secondary rounded-circle'>{totalCounter}</span></a>
+            <a className="navbar-brand" href="#">Navbar</a>
         </div>
     </nav>
 );
