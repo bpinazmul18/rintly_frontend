@@ -4,11 +4,12 @@ class Counter extends Component {
 
     render() {
         const {onIncrement, onDecrement, onDelete, counter} = this.props
+        console.log('App- Counter')
 
         return (
             <React.Fragment>
                 <div className="m-2">
-                    <button onClick={() => onDecrement(counter)} className="btn btn-secondary btn-sm"><i className="fa-solid fa-circle-minus"></i> Decrements</button>
+                    <button onClick={() => onDecrement(counter)} className="btn btn-secondary btn-sm" disabled={counter.value === 0 ? 'disabled' : ''}><i className="fa-solid fa-circle-minus"></i> Decrements</button>
                         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
                     <button onClick={() => onIncrement(counter)} className="btn btn-secondary btn-sm"><i className="fa-solid fa-circle-plus"></i> Increment</button>
                     <button onClick={() => onDelete(counter.id)} className="btn btn-danger btn-sm mx-2">Delete</button>
