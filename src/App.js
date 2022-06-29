@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Navbar from './components/navbar';
+
+import 'react-toastify/dist/ReactToastify.css';
+import './App.css';
+import Movies from './components/movies';
+
+class App extends Component {
+  render () {
+    return (
+      <React.Fragment>
+        <Navbar />
+        <main className='container'>
+          <Movies/>
+          {/* <Counters counters={this.state.counters} onReset={this.handleReset} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} onDelete={this.handleDelete}/> */}
+          <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              />
+              {/* Same as */}
+        </main>
+      </React.Fragment>
+    )
+  }
 }
 
 export default App;
