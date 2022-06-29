@@ -1,10 +1,10 @@
-const Genres = ({ genres }) => {
+const Genres = ({ genres, textProperty, valueProperty }) => {
     return ( 
         <div className="genres-wrapper">
             <ul className="list-group">
                 {
                     genres.map((genre) => (
-                        <li key={genre._id} className="list-group-item">{genre.name}</li>
+                        <li key={genre[valueProperty]} className="list-group-item">{genre[textProperty]}</li>
                     ))
                 }
             </ul>

@@ -58,8 +58,8 @@ class Movies extends Component {
             <div className="container movies-page py-5">
                 <p className='lead'>There are {movies.length} movies in the database.</p>
                 <div className="row">
-                    <div className="col-md-2">
-                        <Genres genres={genres}/>
+                    <div className="col-md-3">
+                        <Genres genres={genres} textProperty="name" valueProperty="_id"/>
                     </div>
                     <div className='col'>
                         {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
