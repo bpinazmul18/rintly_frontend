@@ -4,6 +4,7 @@ import MovieTable from './movie-table';
 import { fetchMovies } from '../services/api';
 import Pagination from './common/pagination';
 import { pagination } from '../utils/pagination';
+import Genres from './genres';
 
 class Movies extends Component {
     state = { 
@@ -52,15 +53,21 @@ class Movies extends Component {
 
         return (
             <div className="container movies-page py-5">
-                {
-                    _movies && _movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
-                        <React.Fragment>
-                            <p className='lead'>Showing {movies.length} movies in the database.</p>
-                            <MovieTable onHandleMovie={this.handleMovie} movies={_movies} onLiked={this.handleLiked}/>
-                            <Pagination currentPage={currentPage} itemsCount={movies.length} pageSize={pageSize} onPageChange={this.handlePageChange}/>
-                        </React.Fragment>
-                    )
-                }
+                <p className='lead'>There are {movies.length} movies in the database.</p>
+                <div className="row">
+                    <div className="col-md-3">
+                        <Genres/>
+                    </div>
+                    <div className="col-md-9">
+                        {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
+                            <React.Fragment>
+                                <MovieTable onHandleMovie={this.handleMovie} movies={_movies} onLiked={this.handleLiked}/>
+                                <Pagination currentPage={currentPage} itemsCount={movies.length} pageSize={pageSize} onPageChange={this.handlePageChange}/>
+                            </React.Fragment>
+                        )}
+                        
+                    </div>
+                </div>
             </div>
         );
     }

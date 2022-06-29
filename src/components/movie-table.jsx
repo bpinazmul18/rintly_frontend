@@ -4,6 +4,7 @@ import Like from './common/like';
 class MovieTable extends Component {
     render() { 
         const {movies, onLiked, onHandleMovie } = this.props
+
         return (
             <table className="table">
                 <thead>
