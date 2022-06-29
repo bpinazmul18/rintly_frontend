@@ -11,5 +11,10 @@ const Genres = ({ genres, textProperty, valueProperty }) => {
         </div>
      );
 }
+
+Genres.defaultProps = {
+    textProperty: 'name',
+    valueProperty: '_id'
+}
  
 export default Genres;

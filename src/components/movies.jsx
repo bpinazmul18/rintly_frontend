@@ -59,7 +59,7 @@ class Movies extends Component {
                 <p className='lead'>There are {movies.length} movies in the database.</p>
                 <div className="row">
                     <div className="col-md-3">
-                        <Genres genres={genres} textProperty="name" valueProperty="_id"/>
+                        <Genres genres={genres}/>
                     </div>
                     <div className='col'>
                         {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
