@@ -1,10 +1,11 @@
-const Genres = ({ genres, textProperty, valueProperty }) => {
+const Genres = (props) => {
+    const { selectedItem, genres, textProperty, valueProperty, onHandleGenre } = props
     return ( 
         <div className="genres-wrapper">
             <ul className="list-group">
                 {
                     genres.map((genre) => (
-                        <li key={genre[valueProperty]} className="list-group-item">{genre[textProperty]}</li>
+                        <li className={`list-group-item ${genre === selectedItem ? 'active' : ''}`} style={{ cursor: 'pointer'}} onClick={() => onHandleGenre(genre)} key={genre[valueProperty]} >{genre[textProperty]}</li>
                     ))
                 }
             </ul>

@@ -11,7 +11,8 @@ class Movies extends Component {
         movies: [],
         currentPage: 1,
         pageSize: 3,
-        genres: []
+        genres: [],
+        selectedGenre: null
      }
 
      handleMovie = (id) => {
@@ -43,6 +44,10 @@ class Movies extends Component {
          this.setState({ currentPage: page })
      }
 
+     handleGenre = (genre) => {
+         this.setState({ selectedGenre: genre})
+     }
+
      async componentDidMount () {
          const moviesRes = await fetchMovies()
          const genresRes = await fetchGenres()
@@ -50,7 +55,7 @@ class Movies extends Component {
          this.setState({ movies: moviesRes.data, genres: genresRes.data })
      }
     render() {
-        const {currentPage, movies, pageSize, genres} = this.state
+        const {selectedGenre, currentPage, movies, pageSize, genres} = this.state
 
         const _movies = pagination(movies, currentPage, pageSize)
 
@@ -59,7 +64,7 @@ class Movies extends Component {
                 <p className='lead'>There are {movies.length} movies in the database.</p>
                 <div className="row">
                     <div className="col-md-3">
-                        <Genres genres={genres}/>
+                        <Genres selectedItem={selectedGenre} onHandleGenre={this.handleGenre} genres={genres}/>
                     </div>
                     <div className='col'>
                         {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
