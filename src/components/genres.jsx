@@ -1,10 +1,12 @@
-const Genres = () => {
+const Genres = ({ genres }) => {
     return ( 
         <div className="genres-wrapper">
             <ul className="list-group">
-                <li className="list-group-item">An item</li>
-                <li className="list-group-item">An item</li>
-                <li className="list-group-item">An item</li>
+                {
+                    genres.map((genre) => (
+                        <li key={genre._id} className="list-group-item">{genre.name}</li>
+                    ))
+                }
             </ul>
         </div>
      );

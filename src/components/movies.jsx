@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import MovieTable from './movie-table';
-import { fetchMovies } from '../services/api';
+import { fetchGenres, fetchMovies } from '../services/api';
 import Pagination from './common/pagination';
 import { pagination } from '../utils/pagination';
 import Genres from './genres';
@@ -10,7 +10,8 @@ class Movies extends Component {
     state = { 
         movies: [],
         currentPage: 1,
-        pageSize: 3
+        pageSize: 3,
+        genres: []
      }
 
      handleMovie = (id) => {
@@ -43,11 +44,14 @@ class Movies extends Component {
      }
 
      async componentDidMount () {
-         const res = await fetchMovies()
-         this.setState({ movies: res.data})
+         const moviesRes = await fetchMovies()
+         const genresRes = await fetchGenres()
+         
+         this.setState({ movies: moviesRes.data })
+         this.setState({ genres: genresRes.data })
      }
     render() {
-        const {currentPage, movies, pageSize} = this.state
+        const {currentPage, movies, pageSize, genres} = this.state
 
         const _movies = pagination(movies, currentPage, pageSize)
 
@@ -56,7 +60,7 @@ class Movies extends Component {
                 <p className='lead'>There are {movies.length} movies in the database.</p>
                 <div className="row">
                     <div className="col-md-3">
-                        <Genres/>
+                        <Genres genres={genres}/>
                     </div>
                     <div className="col-md-9">
                         {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
