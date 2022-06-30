@@ -57,11 +57,12 @@ class Movies extends Component {
     render() {
         const {selectedGenre, currentPage, movies, pageSize, genres} = this.state
 
-        const _movies = pagination(movies, currentPage, pageSize)
+        const filtered = selectedGenre ? movies.filter((m) => m.genre._id === selectedGenre?._id) : movies
+        const _movies = pagination(filtered, currentPage, pageSize)
 
         return (
             <div className="container movies-page py-5">
-                <p className='lead'>There are {movies.length} movies in the database.</p>
+                <p className='lead'>There are {filtered.length} movies in the database.</p>
                 <div className="row">
                     <div className="col-md-3">
                         <Genres selectedItem={selectedGenre} onHandleGenre={this.handleGenre} genres={genres}/>
@@ -70,7 +71,7 @@ class Movies extends Component {
                         {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
                             <React.Fragment>
                                 <MovieTable onHandleMovie={this.handleMovie} movies={_movies} onLiked={this.handleLiked}/>
-                                <Pagination currentPage={currentPage} itemsCount={movies.length} pageSize={pageSize} onPageChange={this.handlePageChange}/>
+                                <Pagination currentPage={currentPage} itemsCount={filtered.length} pageSize={pageSize} onPageChange={this.handlePageChange}/>
                             </React.Fragment>
                         )}
                         
