@@ -45,19 +45,19 @@ class Movies extends Component {
      }
 
      handleGenre = (genre) => {
-         this.setState({ selectedGenre: genre})
+         this.setState({ selectedGenre: genre, currentPage: 1})
      }
 
      async componentDidMount () {
          const moviesRes = await fetchMovies()
          const genresRes = await fetchGenres()
          
-         this.setState({ movies: moviesRes.data, genres: genresRes.data })
+         this.setState({ movies: moviesRes.data, genres: [{'name': 'All Movies'}, ...genresRes.data] })
      }
     render() {
         const {selectedGenre, currentPage, movies, pageSize, genres} = this.state
 
-        const filtered = selectedGenre ? movies.filter((m) => m.genre._id === selectedGenre?._id) : movies
+        const filtered = selectedGenre && selectedGenre._id ? movies.filter((m) => m.genre._id === selectedGenre._id) : movies
         const _movies = pagination(filtered, currentPage, pageSize)
 
         return (
