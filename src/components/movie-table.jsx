@@ -3,17 +3,17 @@ import Like from './common/like';
 
 class MovieTable extends Component {
     render() { 
-        const {movies, onLiked, onHandleMovie } = this.props
+        const {movies, onLiked, onHandleMovie, onSort } = this.props
 
         return (
             <table className="table">
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Title</th>
-                    <th scope="col">Genre</th>
-                    <th scope="col">Stock</th>
-                    <th scope="col">Rate</th>
+                    <th onClick={() => onSort('title')} scope="col">Title</th>
+                    <th onClick={() => onSort('name.genre')} scope="col">Genre</th>
+                    <th onClick={() => onSort('numberInstock')} scope="col">Stock</th>
+                    <th onClick={() => onSort('dailyRentalRate')} scope="col">Rate</th>
                     <th></th>
                     <th></th>
                     </tr>

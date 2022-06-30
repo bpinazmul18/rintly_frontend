@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
+import _ from 'lodash'
 import MovieTable from './movie-table';
 import { fetchGenres, fetchMovies } from '../services/api';
 import Pagination from './common/pagination';
@@ -12,7 +13,8 @@ class Movies extends Component {
         currentPage: 1,
         pageSize: 3,
         genres: [],
-        selectedGenre: null
+        selectedGenre: null,
+        sortColumn: {path: 'title', order: 'asc'}
      }
 
      handleMovie = (id) => {
@@ -48,17 +50,31 @@ class Movies extends Component {
          this.setState({ selectedGenre: genre, currentPage: 1})
      }
 
+     handleSort = (path) => {
+         const sortColumn = {...this.state.sortColumn}
+
+         if (sortColumn.path === path) {
+            sortColumn.order = (sortColumn.order === 'asc') ? 'desc' : 'asc'
+         } else {
+            sortColumn.path = path
+            sortColumn.order = 'asc'
+        }
+        
+         this.setState({ sortColumn })
+     }
+
      async componentDidMount () {
          const moviesRes = await fetchMovies()
          const genresRes = await fetchGenres()
          
-         this.setState({ movies: moviesRes.data, genres: [{'name': 'All Movies'}, ...genresRes.data] })
+         this.setState({ movies: moviesRes.data, genres: [{'_id': '', 'name': 'All Movies'}, ...genresRes.data] })
      }
     render() {
-        const {selectedGenre, currentPage, movies, pageSize, genres} = this.state
+        const {sortColumn, selectedGenre, currentPage, movies, pageSize, genres} = this.state
 
         const filtered = selectedGenre && selectedGenre._id ? movies.filter((m) => m.genre._id === selectedGenre._id) : movies
-        const _movies = pagination(filtered, currentPage, pageSize)
+        const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order])
+        const _movies = pagination(sorted, currentPage, pageSize)
 
         return (
             <div className="container movies-page py-5">
@@ -70,7 +86,7 @@ class Movies extends Component {
                     <div className='col'>
                         {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
                             <React.Fragment>
-                                <MovieTable onHandleMovie={this.handleMovie} movies={_movies} onLiked={this.handleLiked}/>
+                                <MovieTable onHandleMovie={this.handleMovie} movies={_movies} onLiked={this.handleLiked} onSort={this.handleSort}/>
                                 <Pagination currentPage={currentPage} itemsCount={filtered.length} pageSize={pageSize} onPageChange={this.handlePageChange}/>
                             </React.Fragment>
                         )}
