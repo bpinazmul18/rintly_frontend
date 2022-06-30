@@ -1,14 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {store} from "./store/store";
+
+import {compose, pipe} from 'lodash/fp'
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {bugAdded} from "./store/bugs";
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
-store.dispatch(bugAdded('Bug1'))
+// const numbers = [1, 2, 3, 4]
+// const result = numbers.map(n => n * 2)
+// console.log(result)
+
+let input = '   JavaScript  '
+let output = '<div>' + input.trim() + '</div>'
+
+const trim = str => str.trim()
+const wrap = type => str => `<${type}>${str}</${type}>`
+const toLowerCase = str => str.toLowerCase()
+
+const transform = pipe(trim, toLowerCase, wrap('div'))
+console.log(transform(input))
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
