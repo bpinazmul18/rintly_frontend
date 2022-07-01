@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import Counters from './components/counters';
 import Navbar from './components/navbar';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +14,6 @@ class App extends Component {
         <Navbar />
         <main className='container'>
           <Movies/>
-          {/* <Counters counters={this.state.counters} onReset={this.handleReset} onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} onDelete={this.handleDelete}/> */}
           <ToastContainer
               position="top-right"
               autoClose={5000}

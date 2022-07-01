@@ -5,7 +5,7 @@ const Genres = (props) => {
             <ul className="list-group">
                 {
                     genres.map((genre) => (
-                        <li className={`list-group-item ${genre === selectedItem ? 'active' : ''}`} style={{ cursor: 'pointer'}} onClick={() => onHandleGenre(genre)} key={genre[valueProperty]} >{genre[textProperty]}</li>
+                        <li className={`list-group-item clickable ${genre === selectedItem ? 'active' : ''}`} onClick={() => onHandleGenre(genre)} key={genre[valueProperty]} >{genre[textProperty]}</li>
                     ))
                 }
             </ul>
