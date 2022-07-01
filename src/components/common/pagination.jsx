@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types'
 import _ from "lodash"
 
-const Pagination = (props) => {
-    const {pageSize, currentPage, itemsCount, onPageChange} = props
-
+const Pagination = ({pageSize, currentPage, itemsCount, onPageChange}) => {
+    
     const pagesCount = Math.ceil(itemsCount / pageSize)
     const pages = _.range(1, pagesCount + 1)
 

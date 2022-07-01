@@ -1,5 +1,4 @@
-const Genres = (props) => {
-    const { selectedItem, genres, textProperty, valueProperty, onHandleGenre } = props
+const Genres = ({ selectedItem, genres, textProperty, valueProperty, onHandleGenre }) => {
     return ( 
         <div className="genres-wrapper">
             <ul className="list-group">
