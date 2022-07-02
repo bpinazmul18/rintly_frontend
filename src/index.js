@@ -6,18 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 import {Map} from "immutable";
+import produce from "immer";
 
 
-let book = Map({ title: 'title 1'})
+let book = { title: 'title 1'}
 
-function publish(book) {
-    return book.set('isPublish', true)
+function publish (book) {
+    return produce(book, draftBook => {
+        draftBook.isPublish = true
+    })
 }
 
-book = publish(book)
-
-console.log(book.toJS())
-console.log(book.get('title'))
+let update = publish(book)
+console.log(update)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
