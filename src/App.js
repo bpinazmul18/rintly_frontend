@@ -7,6 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Movies from './components/movies';
 import { Route, Routes } from 'react-router-dom';
+import Home from './components/pages/home';
+import About from './components/pages/about';
 
 class App extends Component {
   render () {
@@ -18,8 +20,8 @@ class App extends Component {
 
           <div className='content'>
             <Routes>
-              <Route path="/" element={<h1>Hello home</h1>} />
-              <Route path="about" element={<h1>Hello about</h1>} />
+              <Route path="/" element={<Home/>} />
+              <Route path="about" element={<About/>} />
             </Routes>
           </div>
           <ToastContainer
