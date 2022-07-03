@@ -9,6 +9,7 @@ import Movies from './components/movies';
 import { Route, Routes } from 'react-router-dom';
 import Home from './components/pages/home';
 import About from './components/pages/about';
+import Product from './components/pages/product';
 
 class App extends Component {
   render () {
@@ -16,12 +17,14 @@ class App extends Component {
       <React.Fragment>
         <Navbar />
         <main className='container'>
-          <Movies/>
+          {/* <Movies/> */}
 
           <div className='content'>
             <Routes>
-              <Route path="/" element={<Home/>} />
-              <Route path="about" element={<About/>} />
+              <Route path='/' element={<Home/>}/>
+              <Route path='/about' element={<About/>}/>
+              <Route path='/movies' element={<Movies/>}/>
+              <Route path='/product/:id' element={<Product/>}/>
             </Routes>
           </div>
           <ToastContainer

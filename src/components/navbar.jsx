@@ -13,6 +13,9 @@ const Navbar = () => (
                     <Link className="nav-link px-3" to="/about">About</Link>
                 </li>
                 <li className="nav-item">
+                    <Link className="nav-link px-3" to="/movies">Movies</Link>
+                </li>
+                <li className="nav-item">
                     <Link className="nav-link px-3" to="#!">Pricing</Link>
                 </li>
             </ul>
