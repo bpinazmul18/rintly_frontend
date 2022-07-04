@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-
+import { Link, NavLink } from "react-router-dom";
 const Navbar = () => (
     <nav className="navbar navbar-light bg-light">
         <div className="container">
@@ -7,16 +6,22 @@ const Navbar = () => (
 
             <ul className="navbar-nav flex-row">
                 <li className="nav-item">
-                    <Link className="nav-link px-3" to="/">Home</Link>
+                    <NavLink className="nav-link px-3" to="/">Home</NavLink>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link px-3" to="/about">About</Link>
+                    <NavLink className="nav-link px-3" to="/about">About</NavLink>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link px-3" to="/movies">Movies</Link>
+                    <NavLink className="nav-link px-3" to="/movies">Movies</NavLink>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link px-3" to="#!">Pricing</Link>
+                    <NavLink className="nav-link px-3" to="/customers">Customers</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link px-3" to="/rentals">Rentals</NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink className="nav-link px-3" to="#!">Pricing</NavLink>
                 </li>
             </ul>
         </div>

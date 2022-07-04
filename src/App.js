@@ -10,6 +10,8 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Home from './components/pages/home';
 import About from './components/pages/about';
 import Product from './components/pages/product';
+import Customers from './components/pages/customers';
+import Rentals from './components/pages/rentals';
 
 class App extends Component {
   render () {
@@ -19,6 +21,8 @@ class App extends Component {
               <Route path='/' element={<Home/>}/>
               <Route path='/about' element={<About/>}/>
               <Route path='/movies' element={<Movies/>}/>
+              <Route path='/customers' element={<Customers/>}/>
+              <Route path='/rentals' element={<Rentals/>}/>
               <Route path='/product/:id' element={<Product/>}/>
               <Route path='/not-found' element={<p>NOT FOUND</p>}/>
               <Route path='*' element={<Navigate to="/not-found" replace/>}/>
