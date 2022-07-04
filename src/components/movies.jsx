@@ -6,6 +6,7 @@ import { fetchGenres, fetchMovies } from '../services/api';
 import Pagination from './common/pagination';
 import { pagination } from '../utils/pagination';
 import Genres from './genres';
+import Navbar from './navbar';
 
 class Movies extends Component {
     state = { 
@@ -76,23 +77,26 @@ class Movies extends Component {
         const {totalCount, data} = this.getPagedData()
 
         return (
-            <div className="container movies-page py-5">
-                <p className='lead'>There are {totalCount} movies in the database.</p>
-                <div className="row">
-                    <div className="col-md-3">
-                        <Genres selectedItem={selectedGenre} onHandleGenre={this.handleGenre} genres={genres}/>
-                    </div>
-                    <div className='col'>
-                        {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
-                            <React.Fragment>
-                                <MovieTable sortColumn={sortColumn} onHandleMovie={this.handleMovie} movies={data} onLiked={this.handleLiked} onSort={this.handleSort}/>
-                                <Pagination currentPage={currentPage} itemsCount={totalCount} pageSize={pageSize} onPageChange={this.handlePageChange}/>
-                            </React.Fragment>
-                        )}
-                        
+            <React.Fragment>
+                <Navbar/>
+                <div className="container movies-page py-5">
+                    <p className='lead'>There are {totalCount} movies in the database.</p>
+                    <div className="row">
+                        <div className="col-md-3">
+                            <Genres selectedItem={selectedGenre} onHandleGenre={this.handleGenre} genres={genres}/>
+                        </div>
+                        <div className='col'>
+                            {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
+                                <React.Fragment>
+                                    <MovieTable sortColumn={sortColumn} onHandleMovie={this.handleMovie} movies={data} onLiked={this.handleLiked} onSort={this.handleSort}/>
+                                    <Pagination currentPage={currentPage} itemsCount={totalCount} pageSize={pageSize} onPageChange={this.handlePageChange}/>
+                                </React.Fragment>
+                            )}
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

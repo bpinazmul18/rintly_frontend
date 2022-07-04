@@ -1,9 +1,15 @@
+import React from "react";
+import Navbar from '../navbar';
 
 // eslint-disable-next-line
 export default function () {
     return (
-        <div className="container">
-            About page
-        </div>
+        <React.Fragment>
+            <Navbar/>
+            <div className="container">
+                About page
+            </div>
+        </React.Fragment>
+       
     )
 }

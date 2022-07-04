@@ -6,7 +6,7 @@ import Navbar from './components/navbar';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Movies from './components/movies';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Home from './components/pages/home';
 import About from './components/pages/about';
 import Product from './components/pages/product';
@@ -15,18 +15,14 @@ class App extends Component {
   render () {
     return (
       <React.Fragment>
-        <Navbar />
-        <main className='container'>
-          {/* <Movies/> */}
-
-          <div className='content'>
-            <Routes>
+        <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/about' element={<About/>}/>
               <Route path='/movies' element={<Movies/>}/>
               <Route path='/product/:id' element={<Product/>}/>
-            </Routes>
-          </div>
+              <Route path='/not-found' element={<p>NOT FOUND</p>}/>
+              <Route path='*' element={<Navigate to="/not-found" replace/>}/>
+          </Routes>
           <ToastContainer
               position="top-right"
               autoClose={5000}
@@ -39,7 +35,6 @@ class App extends Component {
               pauseOnHover
               />
               {/* Same as */}
-        </main>
       </React.Fragment>
     )
   }
