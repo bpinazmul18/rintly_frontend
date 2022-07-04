@@ -1,9 +1,12 @@
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
+import queryString from "query-string"
 
 // eslint-disable-next-line
 export default function (props) {
-    const {id} = useParams()
-    console.log(id)
+    const result = useParams()
+    const location = useLocation()
+    const x = queryString.parseUrl(location.search)
+    console.log(x)
 
     return (
         <div>
