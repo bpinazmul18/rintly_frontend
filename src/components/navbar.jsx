@@ -9,9 +9,6 @@ const Navbar = () => (
                     <NavLink className="nav-link px-3" to="/">Home</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink className="nav-link px-3" to="/about">About</NavLink>
-                </li>
-                <li className="nav-item">
                     <NavLink className="nav-link px-3" to="/movies">Movies</NavLink>
                 </li>
                 <li className="nav-item">
@@ -19,9 +16,6 @@ const Navbar = () => (
                 </li>
                 <li className="nav-item">
                     <NavLink className="nav-link px-3" to="/rentals">Rentals</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink className="nav-link px-3" to="#!">Pricing</NavLink>
                 </li>
             </ul>
         </div>

@@ -19,11 +19,9 @@ class App extends Component {
       <React.Fragment>
         <Routes>
               <Route path='/' element={<Home/>}/>
-              <Route path='/about' element={<About/>}/>
               <Route path='/movies' element={<Movies/>}/>
               <Route path='/customers' element={<Customers/>}/>
               <Route path='/rentals' element={<Rentals/>}/>
-              <Route path='/product/:id' element={<Product/>}/>
               <Route path='/not-found' element={<p>NOT FOUND</p>}/>
               <Route path='*' element={<Navigate to="/not-found" replace/>}/>
           </Routes>
