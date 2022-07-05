@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 import _ from 'lodash'
-import MovieTable from './movie-table';
-import { fetchGenres, fetchMovies } from '../services/api';
-import Pagination from './common/pagination';
-import { pagination } from '../utils/pagination';
-import Genres from './genres';
-import Navbar from './navbar';
+import MovieTable from '../movie-table';
+import { fetchGenres, fetchMovies } from '../../services/api';
+import Pagination from '../common/pagination';
+import { pagination } from '../../utils/pagination';
+import Genres from '../genres';
+import Navbar from '../navbar';
 
 class Movies extends Component {
     state = { 
@@ -78,7 +78,6 @@ class Movies extends Component {
 
         return (
             <React.Fragment>
-                <Navbar/>
                 <div className="container movies-page py-5">
                     <p className='lead'>There are {totalCount} movies in the database.</p>
                     <div className="row">

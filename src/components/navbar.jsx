@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 const Navbar = () => (
     <nav className="navbar navbar-light bg-light">
         <div className="container">
-            <a className="navbar-brand" href="#!">Navbar</a>
+            <Link className="navbar-brand" to="/">Navbar</Link>
 
             <ul className="navbar-nav flex-row">
                 <li className="nav-item">
