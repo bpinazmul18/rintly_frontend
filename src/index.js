@@ -6,6 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
+import store from './store'
+store.dispatch({
+    type: 'bugAdded',
+    payload: {
+        description: 'Bug add 1'
+    }
+})
+
+store.dispatch({
+    type: 'bugRemoved',
+    payload: {
+        id: 1
+    }
+})
+console.log(store.getState())
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <App/>
