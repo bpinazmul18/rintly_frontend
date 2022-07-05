@@ -7,27 +7,17 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
 import store from './store'
-import * as actions from './actionTypes'
+import {bugAdded, bugRemoved} from "./actions";
 
 const unsubscribe = store.subscribe(() => {
     console.log('Store changed!', store.getState())
 })
 
-store.dispatch({
-    type: actions.BUG_ADDED,
-    payload: {
-        description: 'Bug add 1'
-    }
-})
+store.dispatch(bugAdded('Bug add 1'))
 
 unsubscribe()
 
-store.dispatch({
-    type: actions.BUG_REMOVED,
-    payload: {
-        id: 1
-    }
-})
+store.dispatch(bugRemoved(1))
 console.log(store.getState())
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
