@@ -10,15 +10,15 @@ import store from './customStore'
 import {bugAdded, bugRemoved, bugResolved} from "./actions";
 
 const unsubscribe = store.subscribe(() => {
-    console.log('Store changed!')
+    console.log('Store changed!', store.getState())
 })
 
 store.dispatch(bugAdded('Bug add 1'))
-// store.dispatch(bugResolved(1))
-// store.dispatch(bugRemoved(1))
+store.dispatch(bugResolved(1))
+store.dispatch(bugRemoved(1))
 
-// customStore
 console.log(store.getState())
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
