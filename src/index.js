@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
-import store from './customStore'
+import store from './store'
 import {bugAdded, bugRemoved, bugResolved} from "./actions";
 
 const unsubscribe = store.subscribe(() => {
