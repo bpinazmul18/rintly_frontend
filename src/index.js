@@ -7,12 +7,19 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
 import store from './store'
+
+const unsubscribe = store.subscribe(() => {
+    console.log('Store changed!', store.getState())
+})
+
 store.dispatch({
     type: 'bugAdded',
     payload: {
         description: 'Bug add 1'
     }
 })
+
+unsubscribe()
 
 store.dispatch({
     type: 'bugRemoved',
