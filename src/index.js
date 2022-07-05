@@ -6,18 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
-import store from './store'
-import {bugAdded, bugRemoved} from "./actions";
+import store from './customStore'
+import {bugAdded, bugRemoved, bugResolved} from "./actions";
 
 const unsubscribe = store.subscribe(() => {
-    console.log('Store changed!', store.getState())
+    console.log('Store changed!')
 })
 
 store.dispatch(bugAdded('Bug add 1'))
+// store.dispatch(bugResolved(1))
+// store.dispatch(bugRemoved(1))
 
-unsubscribe()
-
-store.dispatch(bugRemoved(1))
+// customStore
 console.log(store.getState())
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
