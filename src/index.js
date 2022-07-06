@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
 import configureStore from './store/configureStore'
-import {bugAdded, bugRemoved, bugResolved} from "./store/bugs";
+import {bugAdded, bugRemoved, bugResolved, getUnResolvedBugs} from "./store/bugs";
 import { projectAdded } from "./store/projects";
 
 const store = configureStore()
@@ -25,9 +25,9 @@ store.dispatch(projectAdded({ name: 'Project add 3'}))
 store.dispatch(bugResolved({id: 1}))
 store.dispatch(bugRemoved({id: 1}))
 
-const x = store.getState().entities.bugs.filter(bug => !bug.resolved)
+const x = getUnResolvedBugs(store.getState())
 console.log(x)
-const y = store.getState().entities.bugs.filter(bug => !bug.resolved)
+const y = getUnResolvedBugs(store.getState())
 console.log(y)
 
 console.log(x === y)

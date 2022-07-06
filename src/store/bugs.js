@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import {createSelector} from "reselect"
 
 
 // Reducer
@@ -28,4 +29,11 @@ const slice = createSlice({
 
 export const {bugAdded, bugRemoved, bugResolved} = slice.actions
 export default slice.reducer
+
+// Selector
+export const getUnResolvedBugs = createSelector(
+    state => state.entities.bugs,
+    state => state.entities.projects,
+    (bugs, projects) => bugs.filter(bug => !bug.resolved)
+)
 
