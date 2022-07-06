@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import joinImg from '../../assets/img/join.svg'
+import Input from '../common/input';
 
 class Login extends Component {
     state = {
@@ -39,14 +40,8 @@ class Login extends Component {
                                 <h2 className='display-3'>Login</h2>
                             </div>
                             <form onSubmit={this.handleSubmit}>
-                                <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">Email address</label>
-                                    <input type="email" className="form-control rounded-pill" id="email" name='email' value={account['email']} onChange={this.handleChange} placeholder='Enter email...'/>
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="pswd" className="form-label">Password</label>
-                                    <input type="password" className="form-control rounded-pill" id="pswd" name='password' value={account['password']} onChange={this.handleChange} placeholder='******'/>
-                                </div>
+                                <Input label="Email address" name="email" value={account.email} onHandleChange={this.handleChange}/>
+                                <Input label="Password" type="password" name="password" value={account.password} onHandleChange={this.handleChange}/>
                                 <button type="submit" className="btn btn-outline-primary btn-lg rounded-pill px-5 mt-4">Submit</button>
                             </form>
                         </div>
