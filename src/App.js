@@ -3,7 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import Navbar from './components/navbar';
-import Movies from './components/movies';
+import Movies from './components/pages/movies';
 import Home from './components/pages/home'
 import Login from './components/pages/login';
 import MovieForm from './components/pages/movie-form';

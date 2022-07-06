@@ -1,17 +1,19 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import 'react-toastify/dist/ReactToastify.css';
-import 'bootstrap/dist/css/bootstrap.css'
-import './index.css';
-
 import configureStore from './store/configureStore'
 import {bugAdded, bugAssignedToUser, bugRemoved, bugResolved, getUnResolvedBugs, getBugsByUser} from "./store/bugs";
 import { projectAdded } from "./store/projects";
 import {userAdded} from "./store/users";
+
+
+import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import './index.css';
 
 const store = configureStore()
 
@@ -39,7 +41,9 @@ console.log(bugs)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App/>
+    <BrowserRouter>
+        <App/>
+    </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
