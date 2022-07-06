@@ -6,10 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
-import store from './store'
-import {bugAdded, bugRemoved, bugResolved} from "./actions";
+import store from './store/store'
+import {bugAdded, bugRemoved, bugResolved} from "./store/actions";
 
-const unsubscribe = store.subscribe(() => {
+store.subscribe(() => {
     console.log('Store changed!', store.getState())
 })
 
