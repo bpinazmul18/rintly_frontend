@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import Navbar from './components/navbar';
-
-import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
-import Movies from './components/pages/movies';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import Home from './components/pages/home';
+import Movies from './components/movies';
+import Home from './components/pages/home'
+import Login from './components/pages/login';
+import MovieForm from './components/pages/movie-form';
 import Customers from './components/pages/customers';
 import Rentals from './components/pages/rentals';
-import MovieForm from './components/pages/movie-form';
-import Login from './components/pages/login';
 
 class App extends Component {
   render () {
