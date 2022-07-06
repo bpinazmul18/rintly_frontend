@@ -25,18 +25,36 @@ class Login extends Component {
         e.preventDefault()
 
         const errors = this.validate()
-        this.setState({ errors })
+        this.setState({ errors: errors || {} })
         if (errors) return;
 
         // calling the api
         console.log('handleSubmite fired!', this.state.account)
     }
 
+    validateProperty = ({ name, value}) => {
+        if (name === 'email') {
+            if (value.trim() === '') return 'Email is required.'
+            // ...
+        }
+
+        if (name === 'password') {
+            if (value.trim() === '') return 'Password is required.'
+            // ...
+        }
+    }
+
     handleChange = ({ currentTarget: input }) => {
+        const errors = {...this.state.errors}
+        const errorMessage = this.validateProperty(input)
+
+        if (errorMessage) errors[input.name] = errorMessage
+        else delete errors[input.name]
+
         const account = {...this.state.account}
         account[input.name] = input.value
 
-        this.setState({ account })
+        this.setState({ account, errors })
     }
 
 
