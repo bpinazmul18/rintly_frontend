@@ -24,7 +24,9 @@ class Login extends Component {
     }
 
 
-    render() { 
+    render() {
+        const {account } = this.state
+         
         return (
             <div className="login-page py-5">
                 <div className="container">
@@ -39,11 +41,11 @@ class Login extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email address</label>
-                                    <input type="email" className="form-control rounded-pill" id="email" name='email' value={this.state.account['email']} onChange={this.handleChange} placeholder='Enter email...'/>
+                                    <input type="email" className="form-control rounded-pill" id="email" name='email' value={account['email']} onChange={this.handleChange} placeholder='Enter email...'/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="pswd" className="form-label">Password</label>
-                                    <input type="password" className="form-control rounded-pill" id="pswd" name='password' value={this.state.account['password']} onChange={this.handleChange} placeholder='******'/>
+                                    <input type="password" className="form-control rounded-pill" id="pswd" name='password' value={account['password']} onChange={this.handleChange} placeholder='******'/>
                                 </div>
                                 <button type="submit" className="btn btn-outline-primary btn-lg rounded-pill px-5 mt-4">Submit</button>
                             </form>
