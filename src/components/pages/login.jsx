@@ -7,11 +7,18 @@ class Login extends Component {
         account: {
             email: '',
             password: ''
-        }
+        },
+        errors: {}
     }
-    
+    validate = () => {
+        return { email: 'Email is required.'}
+    }
     handleSubmit = (e) => {
         e.preventDefault()
+
+        const errors = this.validate()
+        this.setState({ errors })
+        if (errors) return;
 
         // calling the api
         console.log('handleSubmite fired!', this.state.account)
