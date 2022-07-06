@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
 
 import configureStore from './store/configureStore'
-import {bugAdded, bugRemoved, bugResolved, getUnResolvedBugs} from "./store/bugs";
+import {bugAdded, bugAssignedToUser, bugRemoved, bugResolved, getUnResolvedBugs, getBugsByUser} from "./store/bugs";
 import { projectAdded } from "./store/projects";
 import {userAdded} from "./store/users";
 
@@ -23,19 +23,18 @@ store.dispatch(bugAdded({ description: 'Bug add 2'}))
 store.dispatch(userAdded({name: 'Nazmul Haque'}))
 store.dispatch(userAdded({name: 'Borsha'}))
 
+store.dispatch(bugAssignedToUser({ bugId: 1, userId: 1}))
+
 store.dispatch(bugAdded({ description: 'Bug add 3'}))
 store.dispatch(projectAdded({ name: 'Project add 1'}))
 store.dispatch(projectAdded({ name: 'Project add 2'}))
 store.dispatch(projectAdded({ name: 'Project add 3'}))
 store.dispatch(bugResolved({id: 1}))
-store.dispatch(bugRemoved({id: 1}))
+store.dispatch(bugRemoved({id: 2}))
 
-const x = getUnResolvedBugs(store.getState())
-console.log(x)
-const y = getUnResolvedBugs(store.getState())
-console.log(y)
+const bugs = getBugsByUser(1)(store.getState())
+console.log(bugs)
 
-console.log(x === y)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <App/>
