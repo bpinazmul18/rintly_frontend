@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify';
 import Navbar from './components/navbar';
 
 import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
 import Movies from './components/movies';
 
 class App extends Component {
