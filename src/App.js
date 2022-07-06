@@ -11,6 +11,7 @@ import Home from './components/pages/home';
 import Customers from './components/pages/customers';
 import Rentals from './components/pages/rentals';
 import MovieForm from './components/pages/movie-form';
+import Login from './components/pages/login';
 
 class App extends Component {
   render () {
@@ -19,6 +20,7 @@ class App extends Component {
         <Navbar/>
         <Routes>
               <Route path='/' element={<Home/>}/>
+              <Route path='/login' element={<Login/>}/>
               <Route path='/movies' element={<Movies/>}/>
               <Route path='/movies/:id' element={<MovieForm/>}/>
               <Route path='/customers' element={<Customers/>}/>

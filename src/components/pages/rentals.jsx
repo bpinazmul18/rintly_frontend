@@ -1,6 +1,6 @@
 const Rentals = () => {
     return ( 
-        <div>
+        <div className="container">
             <h2>Rentals page</h2>
         </div>
      );
