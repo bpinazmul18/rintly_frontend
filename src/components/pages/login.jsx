@@ -2,12 +2,25 @@ import React, { Component } from 'react';
 import joinImg from '../../assets/img/join.svg'
 
 class Login extends Component {
-    state = {  }
+    state = {
+        account: {
+            email: '',
+            password: ''
+        }
+    }
     
     handleSubmit = (e) => {
         e.preventDefault()
 
-        console.log('handleSubmite fired!')
+        // calling the api
+        console.log('handleSubmite fired!', this.state.account)
+    }
+
+    handleChange = ({ currentTarget: input }) => {
+        const account = {...this.state.account}
+        account[input.name] = input.value
+
+        this.setState({ account })
     }
 
 
@@ -26,11 +39,11 @@ class Login extends Component {
                             <form onSubmit={this.handleSubmit}>
                                 <div className="mb-3">
                                     <label htmlFor="email" className="form-label">Email address</label>
-                                    <input type="email" className="form-control rounded-pill" id="email" name='email' placeholder='Enter email...'/>
+                                    <input type="email" className="form-control rounded-pill" id="email" name='email' value={this.state.account['email']} onChange={this.handleChange} placeholder='Enter email...'/>
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="pswd" className="form-label">Password</label>
-                                    <input type="password" className="form-control rounded-pill" id="pswd" name='password' placeholder='******'/>
+                                    <input type="password" className="form-control rounded-pill" id="pswd" name='password' value={this.state.account['password']} onChange={this.handleChange} placeholder='******'/>
                                 </div>
                                 <button type="submit" className="btn btn-outline-primary btn-lg rounded-pill px-5 mt-4">Submit</button>
                             </form>
