@@ -11,7 +11,15 @@ class Login extends Component {
         errors: {}
     }
     validate = () => {
-        return { email: 'Email is required.'}
+
+        const errors = {}
+        const {account} = this.state
+        if (account.email.trim() === '')
+            errors.email = 'Email is required.'
+
+        if (account.password.trim() === '')
+            errors.password = 'Password is required.'
+        return Object.keys(errors).length === 0 ? null : errors
     }
     handleSubmit = (e) => {
         e.preventDefault()
@@ -33,7 +41,7 @@ class Login extends Component {
 
 
     render() {
-        const {account } = this.state
+        const {account, errors } = this.state
          
         return (
             <div className="login-page py-5">
@@ -47,8 +55,8 @@ class Login extends Component {
                                 <h2 className='display-3'>Login</h2>
                             </div>
                             <form onSubmit={this.handleSubmit}>
-                                <Input label="Email address" name="email" value={account.email} onHandleChange={this.handleChange}/>
-                                <Input label="Password" type="password" name="password" value={account.password} onHandleChange={this.handleChange}/>
+                                <Input label="Email address" name="email" value={account.email} onHandleChange={this.handleChange} error={errors?.email}/>
+                                <Input label="Password" type="password" name="password" value={account.password} onHandleChange={this.handleChange} error={errors?.password}/>
                                 <button type="submit" className="btn btn-outline-primary btn-lg rounded-pill px-5 mt-4">Submit</button>
                             </form>
                         </div>
