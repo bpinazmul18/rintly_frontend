@@ -6,9 +6,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import configureStore from './store/configureStore'
-import {bugAdded, bugAssignedToUser, bugRemoved, bugResolved, getUnResolvedBugs, getBugsByUser} from "./store/bugs";
-import { projectAdded } from "./store/projects";
-import {userAdded} from "./store/users";
+// import {bugAdded, bugAssignedToUser, bugRemoved, bugResolved, getUnResolvedBugs, getBugsByUser} from "./store/bugs";
+// import { projectAdded } from "./store/projects";
+// import {userAdded} from "./store/users";
 
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,10 +42,19 @@ const store = configureStore()
 store.dispatch((dispatch, getState) => {
     // Call an API
     // When the promise is resolved => dispatch()
-    // dispatch({ type: 'bugsReceived', payload: {bugs: [1, 2, 3]}})
+    dispatch({
+        type: 'apiCallBegan', // apiRequested
+        payload: {
+            url: '/bugs', // /bugs
+            method: 'get',
+            data: {},
+            onSuccess: 'bugsReceived',
+            onError: 'apiRequestFailed'
+        }
+    })
     // console.log(getState())
     // If the promise is rejected => dispatch()
-    dispatch({type: 'error', payload: { message: 'An error occurred.'}})
+    // dispatch({type: 'error', payload: { message: 'An error occurred.'}})
 
 
 })

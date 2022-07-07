@@ -6,7 +6,6 @@ import { fetchGenres, fetchMovies } from '../../services/api';
 import Pagination from '../common/pagination';
 import { pagination } from '../../utils/pagination';
 import Genres from '../genres';
-import Navbar from '../navbar';
 
 class Movies extends Component {
     state = { 
