@@ -21,7 +21,7 @@ const store = configureStore()
 //     console.log('Store changed!', store.getState())
 // })
 
-store.dispatch(bugAdded({ description: 'Bug add 1'}))
+// store.dispatch(bugAdded({ description: 'Bug add 1'}))
 // store.dispatch(bugAdded({ description: 'Bug add 2'}))
 //
 // store.dispatch(userAdded({name: 'Nazmul Haque'}))
@@ -38,6 +38,16 @@ store.dispatch(bugAdded({ description: 'Bug add 1'}))
 
 // const bugs = getBugsByUser(1)(store.getState())
 // console.log(bugs)
+
+store.dispatch((dispatch, getState) => {
+    // Call an API
+    // When the promise is resolved => dispatch()
+    dispatch({ type: 'bugsReceived', payload: {bugs: [1, 2, 3]}})
+    console.log(getState())
+    // If the promise is rejected => dispatch()
+
+
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
