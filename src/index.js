@@ -22,22 +22,22 @@ const store = configureStore()
 // })
 
 store.dispatch(bugAdded({ description: 'Bug add 1'}))
-store.dispatch(bugAdded({ description: 'Bug add 2'}))
+// store.dispatch(bugAdded({ description: 'Bug add 2'}))
+//
+// store.dispatch(userAdded({name: 'Nazmul Haque'}))
+// store.dispatch(userAdded({name: 'Borsha'}))
+//
+// store.dispatch(bugAssignedToUser({ bugId: 1, userId: 1}))
+//
+// store.dispatch(bugAdded({ description: 'Bug add 3'}))
+// store.dispatch(projectAdded({ name: 'Project add 1'}))
+// store.dispatch(projectAdded({ name: 'Project add 2'}))
+// store.dispatch(projectAdded({ name: 'Project add 3'}))
+// store.dispatch(bugResolved({id: 1}))
+// store.dispatch(bugRemoved({id: 2}))
 
-store.dispatch(userAdded({name: 'Nazmul Haque'}))
-store.dispatch(userAdded({name: 'Borsha'}))
-
-store.dispatch(bugAssignedToUser({ bugId: 1, userId: 1}))
-
-store.dispatch(bugAdded({ description: 'Bug add 3'}))
-store.dispatch(projectAdded({ name: 'Project add 1'}))
-store.dispatch(projectAdded({ name: 'Project add 2'}))
-store.dispatch(projectAdded({ name: 'Project add 3'}))
-store.dispatch(bugResolved({id: 1}))
-store.dispatch(bugRemoved({id: 2}))
-
-const bugs = getBugsByUser(1)(store.getState())
-console.log(bugs)
+// const bugs = getBugsByUser(1)(store.getState())
+// console.log(bugs)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
