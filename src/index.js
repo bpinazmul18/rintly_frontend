@@ -6,7 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import configureStore from './store/configureStore'
-// import {bugAdded, bugAssignedToUser, bugRemoved, bugResolved, getUnResolvedBugs, getBugsByUser} from "./store/bugs";
+import {bugAdded, bugAssignedToUser, bugRemoved, bugResolved, getUnResolvedBugs, getBugsByUser} from "./store/bugs";
 // import { projectAdded } from "./store/projects";
 // import {userAdded} from "./store/users";
 
@@ -23,6 +23,7 @@ const store = configureStore()
 
 // store.dispatch(bugAdded({ description: 'Bug add 1'}))
 // store.dispatch(bugAdded({ description: 'Bug add 2'}))
+// store.dispatch({type: 'error', payload: { message: 'An error occurred.'}})
 //
 // store.dispatch(userAdded({name: 'Nazmul Haque'}))
 // store.dispatch(userAdded({name: 'Borsha'}))
@@ -39,24 +40,34 @@ const store = configureStore()
 // const bugs = getBugsByUser(1)(store.getState())
 // console.log(bugs)
 
-store.dispatch((dispatch, getState) => {
+// store.dispatch((dispatch, getState) => {
+//     // Call an API
+//     // When the promise is resolved => dispatch()
+//
+//     dispatch({
+//         type: 'apiCallBegan', // apiRequested
+//         payload: {
+//             url: '/bugs', // /bugs
+//             method: 'get',
+//             data: {},
+//             onSuccess: 'bugsReceived',
+//             onError: 'apiRequestFailed'
+//         }
+//     })
+//
+//     // If the promise is rejected => dispatch()
+//     // dispatch({type: 'error', payload: { message: 'An error occurred.'}})
+//
+//
+// })
+
+store.dispatch((dispatch) => {
     // Call an API
     // When the promise is resolved => dispatch()
-    dispatch({
-        type: 'apiCallBegan', // apiRequested
-        payload: {
-            url: '/bugs', // /bugs
-            method: 'get',
-            data: {},
-            onSuccess: 'bugsReceived',
-            onError: 'apiRequestFailed'
-        }
-    })
-    // console.log(getState())
+
+    // dispatch({ type: 'bugsReceived', payload: [1,2,3]})
+    // dispatch({ type: 'apiRequestFailed', payload: error.message})
     // If the promise is rejected => dispatch()
-    // dispatch({type: 'error', payload: { message: 'An error occurred.'}})
-
-
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
