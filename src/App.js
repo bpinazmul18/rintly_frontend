@@ -9,6 +9,7 @@ import Login from './components/pages/login';
 import MovieForm from './components/pages/movie-form';
 import Customers from './components/pages/customers';
 import Rentals from './components/pages/rentals';
+import Register from './components/pages/register';
 
 class App extends Component {
   render () {
@@ -18,6 +19,7 @@ class App extends Component {
         <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/login' element={<Login/>}/>
+              <Route path='/signup' element={<Register/>}/>
               <Route path='/movies' element={<Movies/>}/>
               <Route path='/movies/:id' element={<MovieForm/>}/>
               <Route path='/customers' element={<Customers/>}/>

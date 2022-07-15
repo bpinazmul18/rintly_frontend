@@ -23,7 +23,10 @@ const Navbar = () => {
                     </li>
                 </ul>
     
-                <button onClick={() => navigate('/login')} className="btn btn-outline-primary px-4 rounded-pill">Login</button>
+                <div>
+                    <button onClick={() => navigate('/login')} className="btn btn-outline-primary px-4 rounded-pill me-1">Login</button>
+                    <button onClick={() => navigate('/signup')} className="btn btn-primary px-4 rounded-pill ms-1">Register</button>
+                </div>
             </div>
         </nav>
     );
