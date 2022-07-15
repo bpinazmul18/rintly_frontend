@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from "react-router-dom";
 import { toast } from 'react-toastify';
 import _ from 'lodash'
 import MovieTable from '../movie-table';
@@ -78,7 +79,10 @@ class Movies extends Component {
         return (
             <React.Fragment>
                 <div className="container movies-page py-5">
-                    <p className='lead'>There are {totalCount} movies in the database.</p>
+                    <div className="d-flex align-items-center justify-content-between">
+                        <p className='lead'>There are {totalCount} movies in the database.</p>
+                        <NavLink className="btn btn-primary rounded-pill" to="/movie/new">New Movie</NavLink>
+                    </div>
                     <div className="row">
                         <div className="col-md-3">
                             <Genres selectedItem={selectedGenre} onHandleGenre={this.handleGenre} genres={genres}/>
