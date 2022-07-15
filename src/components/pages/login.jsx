@@ -3,10 +3,11 @@ import Joi from 'joi-browser'
 
 import joinImg from '../../assets/img/join.svg'
 import Input from '../common/input';
+import Form from '../common/form';
 
-class Login extends Component {
+class Login extends Form {
     state = {
-        account: {
+        data: {
             email: '',
             password: ''
         },
@@ -18,59 +19,13 @@ class Login extends Component {
         password: Joi.string().required().label('Password')
     }
 
-    validate = () => {
-        const options = {abortEarly: false}
-        
-        const {error} = Joi.validate(this.state.account, this.schema, options)
-        if (!error) return null
-        
-        const errors = {}
-
-        for (let item of error.details)
-            errors[item.path[0]] = item.message
-
-        console.log(errors)
-
-        return errors
-    }
-
-
-    handleSubmit = (e) => {
-        e.preventDefault()
-
-        const errors = this.validate()
-        this.setState({ errors: errors || {} })
-        if (errors) return;
-
+    doSubmit = () => {
         // calling the api
-        console.log('handleSubmite fired!', this.state.account)
+        console.log('handleSubmite fired!', this.state.data)
     }
-
-    validateProperty = ({ name, value}) => {
-        const obj = {[name]: value}
-        const schema = {[name]: this.schema[name]}
-
-        const { error } = Joi.validate(obj, schema, { abortEarly: false})
-        return error ? error.details[0].message : null
-
-    }
-
-    handleChange = ({ currentTarget: input }) => {
-        const errors = {...this.state.errors}
-        const errorMessage = this.validateProperty(input)
-
-        if (errorMessage) errors[input.name] = errorMessage
-        else delete errors[input.name]
-
-        const account = {...this.state.account}
-        account[input.name] = input.value
-
-        this.setState({ account, errors })
-    }
-
 
     render() {
-        const {account, errors } = this.state
+        const {data, errors } = this.state
          
         return (
             <div className="login-page py-5">
@@ -84,8 +39,8 @@ class Login extends Component {
                                 <h2 className='display-3'>Login</h2>
                             </div>
                             <form onSubmit={this.handleSubmit}>
-                                <Input label="Email address" type="text" name="email" value={account.email} onHandleChange={this.handleChange} error={errors?.email}/>
-                                <Input label="Password" type="password" name="password" value={account.password} onHandleChange={this.handleChange} error={errors?.password}/>
+                                <Input label="Email address" type="text" name="email" value={data.email} onHandleChange={this.handleChange} error={errors?.email}/>
+                                <Input label="Password" type="password" name="password" value={data.password} onHandleChange={this.handleChange} error={errors?.password}/>
                                 <button disabled={this.validate()} type="submit" className="btn btn-outline-primary btn-lg rounded-pill px-5 mt-4">Submit</button>
                             </form>
                         </div>
