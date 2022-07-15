@@ -45,15 +45,12 @@ class Login extends Component {
     }
 
     validateProperty = ({ name, value}) => {
-        if (name === 'email') {
-            if (value.trim() === '') return 'Email is required.'
-            // ...
-        }
+        const obj = {[name]: value}
+        const schema = {[name]: this.schema[name]}
 
-        if (name === 'password') {
-            if (value.trim() === '') return 'Password is required.'
-            // ...
-        }
+        const { error } = Joi.validate(obj, schema, { abortEarly: false})
+        return error ? error.details[0].message : null
+
     }
 
     handleChange = ({ currentTarget: input }) => {
