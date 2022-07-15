@@ -29,6 +29,8 @@ class Login extends Component {
         for (let item of error.details)
             errors[item.path[0]] = item.message
 
+        console.log(errors)
+
         return errors
     }
 
@@ -82,9 +84,9 @@ class Login extends Component {
                                 <h2 className='display-3'>Login</h2>
                             </div>
                             <form onSubmit={this.handleSubmit}>
-                                <Input label="Email address" name="email" value={account.email} onHandleChange={this.handleChange} error={errors?.email}/>
+                                <Input label="Email address" type="text" name="email" value={account.email} onHandleChange={this.handleChange} error={errors?.email}/>
                                 <Input label="Password" type="password" name="password" value={account.password} onHandleChange={this.handleChange} error={errors?.password}/>
-                                <button type="submit" className="btn btn-outline-primary btn-lg rounded-pill px-5 mt-4">Submit</button>
+                                <button disabled={this.validate()} type="submit" className="btn btn-outline-primary btn-lg rounded-pill px-5 mt-4">Submit</button>
                             </form>
                         </div>
                     </div>
