@@ -28,9 +28,9 @@ const store = configureStore()
 // store.subscribe(() => {
 //     console.log('Store changed!', store.getState())
 // })
-
-store.dispatch(bugAdded({ description: 'Bug add 1'}))
-store.dispatch(bugAdded({ description: 'Bug add 2'}))
+//
+// store.dispatch(bugAdded({ description: 'Bug add 1'}))
+// store.dispatch(bugAdded({ description: 'Bug add 2'}))
 // store.dispatch({type: 'error', payload: { message: 'An error occurred.'}})
 //
 // store.dispatch(userAdded({name: 'Nazmul Haque'}))

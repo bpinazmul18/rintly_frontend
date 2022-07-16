@@ -5,13 +5,15 @@ import * as actions from "../api"
 const api = ({ dispatch }) => next => async action => {
     if (action.type !== actions.apiCallBegan.type) return next(action)
 
+    const {url, method, onStart, onSuccess, onError} = action.payload
+    if (onStart) dispatch({ type: onStart })
+
     next(action)
-    const {url, method, onSuccess, onError} = action.payload
 
     try {
         // Options
         const options = {
-            baseURL: process.env.REACT_APP_API_URL,
+            baseURL: process.env.REACT_APP_API_URL+2,
             url,
             method
         }
@@ -26,11 +28,11 @@ const api = ({ dispatch }) => next => async action => {
             dispatch({ type: onSuccess, payload: response.data})
     } catch(error) {
         // General
-        dispatch({ type: actions.apiCallFailed, payload: error})
+        dispatch({ type: actions.apiCallFailed, payload: error.message})
 
         // specific
         if (onError)
-            dispatch({ type: onError, payload: error})
+            dispatch({ type: onError, payload: error.message})
     }
 }
 
