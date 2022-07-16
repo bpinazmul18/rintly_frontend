@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import configureStore from './store/configureStore'
+import * as actions from './store/api'
 import {bugAdded, bugAssignedToUser, bugRemoved, bugResolved, getUnResolvedBugs, getBugsByUser} from "./store/bugs";
 // import { projectAdded } from "./store/projects";
 // import {userAdded} from "./store/users";
@@ -61,12 +62,7 @@ const store = configureStore()
 //
 // })
 
-store.dispatch((dispatch) => {
-    dispatch({
-        type: 'apiCallBegan',
-        payload: { url: '/movies', method: 'get', onSuccess: 'bugsReceived', onError: 'apiRequestFailed'
-    }})
-})
+store.dispatch(actions.apiCallBegan({ url: '/movies', onSuccess: 'bugsReceived'}))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
