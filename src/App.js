@@ -1,47 +1,53 @@
-import React, { Component } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-
-import Navbar from './components/navbar';
-import Movies from './components/pages/movies';
-import Home from './components/pages/home'
-import Login from './components/pages/login';
-import MovieForm from './components/pages/movie-form';
-import Customers from './components/pages/customers';
-import Rentals from './components/pages/rentals';
-import Register from './components/pages/register';
-import NewMovie from './components/pages/new-movie';
-
+import { Component } from 'react';
+import axios from 'axios';
 class App extends Component {
+  state = {
+    posts: []
+  }
+
+  async componentDidMount () {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    this.setState({ posts: response.data })
+  }
+
+  handleUpdate = () => {
+    console.log('Handle update fired')
+  }
+
+  handleDelete = () => {
+    console.log('Handle delete fired')
+  }
+
   render () {
     return (
-      <React.Fragment>
-        <Navbar/>
-        <Routes>
-              <Route path='/' element={<Home/>}/>
-              <Route path='/login' element={<Login/>}/>
-              <Route path='/signup' element={<Register/>}/>
-              <Route path='/movies' element={<Movies/>}/>
-              <Route path='/movies/:id' element={<MovieForm/>}/>
-              <Route path='/movie/new' element={<NewMovie/>}/>
-              <Route path='/customers' element={<Customers/>}/>
-              <Route path='/rentals' element={<Rentals/>}/>
-              <Route path='/not-found' element={<p>NOT FOUND</p>}/>
-              <Route path='*' element={<Navigate to="/not-found" replace/>}/>
-          </Routes>
-          <ToastContainer
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              />
-              {/* Same as */}
-      </React.Fragment>
+      <div className='container'>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              this.state.posts.map(post => (
+                <tr key={post.id}>
+                  <td>{post.id}</td>
+                  <td>{post.title}</td>
+                  <td>
+                    <button onClick={() => this.handleUpdate()} className='btn btn-primary btn-sm'>Update</button>
+                  </td>
+                  <td>
+                    <button onClick={() => this.handleDelete()} className='btn btn-danger btn-sm'>Delete</button>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
     )
   }
 }
