@@ -32,8 +32,10 @@ class App extends Component {
     this.setState({ posts })
   }
 
-  handleDelete = () => {
-    console.log('Handle delete fired')
+  handleDelete = async (post) => {
+    await axios.delete(`${apiEndpoint}/${post.id}`)
+    const posts = this.state.posts.filter(p => p.id !== post.id)
+    this.setState({ posts})
   }
 
   render () {
@@ -59,7 +61,7 @@ class App extends Component {
                     <button onClick={() => this.handleUpdate(post)} className='btn btn-info btn-sm'>Update</button>
                   </td>
                   <td>
-                    <button onClick={() => this.handleDelete()} className='btn btn-danger btn-sm'>Delete</button>
+                    <button onClick={() => this.handleDelete(post)} className='btn btn-danger btn-sm'>Delete</button>
                   </td>
                 </tr>
               ))
