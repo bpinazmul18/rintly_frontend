@@ -3,6 +3,7 @@ import Joi from 'joi-browser'
 
 import joinImg from '../../assets/img/join.svg'
 import Form from '../common/form';
+import { login } from '../../services/api';
 
 class Login extends Form {
     state = {
@@ -14,13 +15,14 @@ class Login extends Form {
     }
 
     schema = {
-        email: Joi.string().required().label('Username'),
-        password: Joi.string().required().label('Password')
+        email: Joi.string().email().required().label('Username'),
+        password: Joi.string().min(5).required().label('Password')
     }
 
-    doSubmit = () => {
+    doSubmit = async () => {
         // calling the api
-        console.log('handleSubmite fired!', this.state.data)
+        const response = await login(this.state.data)
+        localStorage.setItem('token', response.data)
     }
 
     render() {
