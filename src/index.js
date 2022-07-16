@@ -77,7 +77,7 @@ const store = configureStore()
 // }, 2000)
 
 // store.dispatch(addBug({ title: 'aaaaa', genreId: '62b713a58fbdd0a13b6f4677', numberInStock: 5, dailyRentalRate: 4}))
-store.dispatch(resolvedBug(1))
+// store.dispatch(resolvedBug(1))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
