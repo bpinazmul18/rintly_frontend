@@ -1,21 +1,25 @@
 import axios from "axios";
-
 const api = ({ dispatch }) => next => async action => {
     if (action.type !== 'apiCallBegan') return next(action)
 
-    // next(action)
-    const {url, method, data, onSuccess, onError} = action.payload
+    next(action)
+    const {url, method, onSuccess, onError} = action.payload
 
     try {
-        const response = await axios.request({
-            baseURL: 'http://localhost:9002/api',
-            url, // /bugs
-            method,
-            data
-        })
+        // Options
+        const options = {
+            baseURL: process.env.REACT_APP_API_URL,
+            url,
+            method
+        }
 
+        // API request
+        const response = await axios.request(options)
+
+        // Dispatch success
         dispatch({ type: onSuccess, payload: response.data})
     } catch(error) {
+        // Dispatch error
         dispatch({ type: onError, payload: error})
     }
 }

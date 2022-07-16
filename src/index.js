@@ -62,12 +62,10 @@ const store = configureStore()
 // })
 
 store.dispatch((dispatch) => {
-    // Call an API
-    // When the promise is resolved => dispatch()
-
-    // dispatch({ type: 'bugsReceived', payload: [1,2,3]})
-    // dispatch({ type: 'apiRequestFailed', payload: error.message})
-    // If the promise is rejected => dispatch()
+    dispatch({
+        type: 'apiCallBegan',
+        payload: { url: '/movies', method: 'get', onSuccess: 'bugsReceived', onError: 'apiRequestFailed'
+    }})
 })
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
