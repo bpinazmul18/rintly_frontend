@@ -6,8 +6,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import configureStore from './store/configureStore'
-import * as actions from './store/api'
-import {bugAdded, bugAssignedToUser, bugRemoved, bugResolved, getUnResolvedBugs, getBugsByUser} from "./store/bugs";
+import {
+    bugAdded,
+    bugAssignedToUser,
+    bugRemoved,
+    bugResolved,
+    getUnResolvedBugs,
+    getBugsByUser,
+    loadBugs
+} from "./store/bugs";
 // import { projectAdded } from "./store/projects";
 // import {userAdded} from "./store/users";
 
@@ -62,7 +69,8 @@ store.dispatch(bugAdded({ description: 'Bug add 2'}))
 //
 // })
 
-store.dispatch(actions.apiCallBegan({ url: '/movies', onSuccess: 'bugsReceived'}))
+// UI layer
+store.dispatch(loadBugs())
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
