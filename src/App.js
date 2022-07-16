@@ -1,17 +1,27 @@
 import { Component } from 'react';
 import axios from 'axios';
+
+const apiEndpoint = 'https://jsonplaceholder.typicode.com/posts'
 class App extends Component {
   state = {
     posts: []
   }
 
   async componentDidMount () {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-    this.setState({ posts: response.data })
+    const {data: posts} = await axios.get(apiEndpoint)
+    this.setState({ posts })
+  }
+
+  handleAdd = async () => {
+    const obj = { title: 'a', body: 'b'}
+    const {data: post} = await axios.post(apiEndpoint, obj)
+
+    const posts = [post, ...this.state.posts]
+
+    this.setState({ posts })
   }
 
   handleUpdate = () => {
-    console.log('Handle update fired')
   }
 
   handleDelete = () => {
@@ -21,6 +31,7 @@ class App extends Component {
   render () {
     return (
       <div className='container'>
+        <button onClick={() => this.handleAdd()} className='btn btn-primary btn-sm'>Add Post</button>
         <table className="table">
           <thead>
             <tr>
@@ -37,7 +48,7 @@ class App extends Component {
                   <td>{post.id}</td>
                   <td>{post.title}</td>
                   <td>
-                    <button onClick={() => this.handleUpdate()} className='btn btn-primary btn-sm'>Update</button>
+                    <button onClick={() => this.handleUpdate()} className='btn btn-info btn-sm'>Update</button>
                   </td>
                   <td>
                     <button onClick={() => this.handleDelete()} className='btn btn-danger btn-sm'>Delete</button>
