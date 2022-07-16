@@ -4,8 +4,6 @@ import {apiCallBegan} from "./api"
 import moment from "moment"
 
 // Reducer
-let lastId = 0
-
 const slice = createSlice({
     name: 'bugs',
     initialState: {
@@ -34,11 +32,7 @@ const slice = createSlice({
             bugs.list[index].userId = userId
         },
         bugAdded: (bugs, action) => {
-            bugs.list.push({
-                id: ++lastId,
-                description: action.payload.description,
-                resolved: false
-            })
+            bugs.list.push(action.payload)
         },
         bugRemoved: (bugs, action) => {
             const index = bugs.list.findIndex((bug) => bug.id === action.payload.id)
@@ -69,12 +63,13 @@ export const loadBugs = () => (dispatch, getState) => {
         onError: bugsRequestFailed.type
     }))
 }
-// export const loadBugs = () => apiCallBegan({
-//     url,
-//     onStart: bugsRequested.type,
-//     onSuccess: bugsReceived.type,
-//     onError: bugsRequestFailed.type
-// })
+
+export const addBug = bug => apiCallBegan({
+    url,
+    method: 'post',
+    data: bug,
+    onSuccess: bugAdded.type
+})
 
 
 // Selector

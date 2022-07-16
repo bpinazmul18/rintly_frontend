@@ -13,7 +13,8 @@ import {
     bugResolved,
     getUnResolvedBugs,
     getBugsByUser,
-    loadBugs
+    loadBugs,
+    addBug
 } from "./store/bugs";
 // import { projectAdded } from "./store/projects";
 // import {userAdded} from "./store/users";
@@ -70,10 +71,12 @@ const store = configureStore()
 // })
 
 // UI layer
-store.dispatch(loadBugs())
-setTimeout(() => {
-    store.dispatch(loadBugs())
-}, 2000)
+// store.dispatch(loadBugs())
+// setTimeout(() => {
+//     store.dispatch(loadBugs())
+// }, 2000)
+
+store.dispatch(addBug({ title: 'aaaaa', genreId: '62b713a58fbdd0a13b6f4677', numberInStock: 5, dailyRentalRate: 4}))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
