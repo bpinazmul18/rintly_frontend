@@ -21,7 +21,15 @@ class App extends Component {
     this.setState({ posts })
   }
 
-  handleUpdate = () => {
+  handleUpdate = async (post) => {
+    post.title = 'update'
+    await axios.patch(`${apiEndpoint}/${post.id}`, post)
+
+    const posts = [...this.state.posts]
+    const index = posts.indexOf(post)
+    posts[index] = {...post}
+
+    this.setState({ posts })
   }
 
   handleDelete = () => {
@@ -48,7 +56,7 @@ class App extends Component {
                   <td>{post.id}</td>
                   <td>{post.title}</td>
                   <td>
-                    <button onClick={() => this.handleUpdate()} className='btn btn-info btn-sm'>Update</button>
+                    <button onClick={() => this.handleUpdate(post)} className='btn btn-info btn-sm'>Update</button>
                   </td>
                   <td>
                     <button onClick={() => this.handleDelete()} className='btn btn-danger btn-sm'>Delete</button>
