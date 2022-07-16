@@ -4,6 +4,7 @@ import Joi from 'joi-browser'
 import joinImg from '../../assets/img/join.svg'
 import Form from '../common/form';
 import { login } from '../../services/api';
+import { withRouter } from '../with-router';
 
 class Login extends Form {
     state = {
@@ -23,6 +24,8 @@ class Login extends Form {
         // calling the api
         const response = await login(this.state.data)
         localStorage.setItem('token', response.data)
+
+        this.props.router.navigate('/')
     }
 
     render() {
@@ -50,4 +53,4 @@ class Login extends Form {
     }
 }
  
-export default Login;
+export default withRouter(Login);

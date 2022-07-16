@@ -1,7 +1,24 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 const Navbar = () => {
-
     const navigate = useNavigate()
+
+    const handleLogout = () => {
+        localStorage.removeItem('token')
+        navigate('/login')
+    }
+
+    const renderLogout = () => (
+        <div>
+            <button onClick={() => handleLogout()} className="btn btn-primary px-4 rounded-pill ms-1">Logout</button>
+        </div>
+    )
+
+    const renderLogin = () => (
+        <div>
+            <button onClick={() => navigate('/login')} className="btn btn-outline-primary px-4 rounded-pill me-1">Login</button>
+            <button onClick={() => navigate('/signup')} className="btn btn-primary px-4 rounded-pill ms-1">Register</button>
+        </div>
+    )
 
     return (
         <nav className="navbar navbar-light bg-light">
@@ -23,10 +40,12 @@ const Navbar = () => {
                     </li>
                 </ul>
     
-                <div>
-                    <button onClick={() => navigate('/login')} className="btn btn-outline-primary px-4 rounded-pill me-1">Login</button>
-                    <button onClick={() => navigate('/signup')} className="btn btn-primary px-4 rounded-pill ms-1">Register</button>
-                </div>
+                
+
+                {
+                    localStorage.getItem('token') ? renderLogout() : renderLogin()
+                }
+
             </div>
         </nav>
     );
