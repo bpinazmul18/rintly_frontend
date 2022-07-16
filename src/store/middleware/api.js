@@ -13,7 +13,7 @@ const api = ({ dispatch }) => next => async action => {
     try {
         // Options
         const options = {
-            baseURL: process.env.REACT_APP_API_URL+2,
+            baseURL: process.env.REACT_APP_API_URL,
             url,
             method
         }
