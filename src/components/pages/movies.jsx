@@ -7,6 +7,7 @@ import { fetchGenres, fetchMovies } from '../../services/api';
 import Pagination from '../common/pagination';
 import { pagination } from '../../utils/pagination';
 import Genres from '../genres';
+import SearchBox from '../common/search-box';
 
 class Movies extends Component {
     state = { 
@@ -15,7 +16,8 @@ class Movies extends Component {
         pageSize: 3,
         genres: [],
         selectedGenre: null,
-        sortColumn: {path: 'title', order: 'asc'}
+        sortColumn: {path: 'title', order: 'asc'},
+        searchQuery: ''
      }
 
      handleMovie = (id) => {
@@ -48,17 +50,27 @@ class Movies extends Component {
      }
 
      handleGenre = (genre) => {
-         this.setState({ selectedGenre: genre, currentPage: 1})
+         this.setState({ selectedGenre: genre, searchQuery: '', currentPage: 1})
      }
 
      handleSort = (sortColumn) => {
          this.setState({ sortColumn })
      }
 
-     getPagedData = () => {
-        const {sortColumn, selectedGenre, currentPage, movies, pageSize} = this.state
+     handleSearch = (query) => {
+        this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1})
+     }
 
-        const filtered = selectedGenre && selectedGenre._id ? movies.filter((m) => m.genre._id === selectedGenre._id) : movies
+     getPagedData = () => {
+        const {sortColumn, selectedGenre, currentPage, movies, pageSize, searchQuery} = this.state
+
+        let filtered = movies
+
+        if (searchQuery)
+            filtered = movies.filter(m => m.title.toLowerCase().startsWith(searchQuery.toLowerCase()))
+        else if (selectedGenre && selectedGenre._id)
+            filtered = movies.filter((m) => m.genre._id === selectedGenre._id)
+
         const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order])
         const _movies = pagination(sorted, currentPage, pageSize)
 
@@ -72,7 +84,7 @@ class Movies extends Component {
          this.setState({ movies: moviesRes.data, genres: [{'_id': '', 'name': 'All Movies'}, ...genresRes.data] })
      }
     render() {
-        const {sortColumn, selectedGenre, currentPage, movies, pageSize, genres} = this.state
+        const {sortColumn, selectedGenre, currentPage, movies, pageSize, genres, searchQuery} = this.state
 
         const {totalCount, data} = this.getPagedData()
 
@@ -88,6 +100,7 @@ class Movies extends Component {
                             <Genres selectedItem={selectedGenre} onHandleGenre={this.handleGenre} genres={genres}/>
                         </div>
                         <div className='col'>
+                            <SearchBox value={searchQuery} onChange={this.handleSearch}/>
                             {movies.length === 0 ? <p className='lead'>There are no movies.</p> : (
                                 <React.Fragment>
                                     <MovieTable sortColumn={sortColumn} onHandleMovie={this.handleMovie} movies={data} onLiked={this.handleLiked} onSort={this.handleSort}/>
