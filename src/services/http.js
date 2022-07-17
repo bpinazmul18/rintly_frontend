@@ -2,17 +2,18 @@ import axios from "axios";
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
-axios.interceptors.response.use(null, (error) => {
+axios.interceptors.response.use(null, error => {
   const expectedError =
     error.response &&
     error.response.status >= 400 &&
     error.response.status < 500;
 
   if (!expectedError) {
-    // alert("Unexpected error occurred.");
+    console.log('Logging the error!', error.message)
+    alert('An unexpected error occurred!')
   }
 
-  return Promise.resolve(error);
+  return Promise.reject(error);
 });
 
 const http = {
