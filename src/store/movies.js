@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import moment from "moment";
 import {apiCallBegan} from "./api";
+import {bugAdded} from "./bugs";
 
 
 const slice = createSlice({
@@ -46,3 +47,10 @@ export const loadMovies = () => (dispatch, getState) => {
         onError: moviesRequestFailed.type
     }))
 }
+
+export const addMovie = movie => apiCallBegan({
+    url,
+    method: 'post',
+    data: movie,
+    onSuccess: movieAdded.type
+})

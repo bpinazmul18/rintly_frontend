@@ -23,7 +23,7 @@ import {
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.css'
 import './index.css';
-import {loadMovies, movieAdded} from "./store/movies";
+import {addMovie, loadMovies, movieAdded} from "./store/movies";
 
 const store = configureStore()
 
@@ -79,18 +79,13 @@ const store = configureStore()
 
 // store.dispatch(addBug({ title: 'aaaaa', genreId: '62b713a58fbdd0a13b6f4677', numberInStock: 5, dailyRentalRate: 4}))
 // store.dispatch(resolvedBug(1))
-const movie = {
-    _id: '62b715268fbdd0a13b6f467f',
-    title: 'Movie title',
-    genre: {
-        name: 'action',
-        _id: '62b713a58fbdd0a13b6f4677'
-    },
-    numberInStock: 5,
-    dailyRentalRate: 3
-}
-// store.dispatch(movieAdded(movie))
-store.dispatch(loadMovies())
+// const movie = {
+//     title: 'New movie',
+//     genreId: '62b713a58fbdd0a13b6f4677',
+//     numberInStock: 5,
+//     dailyRentalRate: 3
+// }
+// store.dispatch(addMovie(movie))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>
