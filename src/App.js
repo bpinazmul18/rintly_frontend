@@ -1,6 +1,8 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import http from './services/http';
 import config from '../src/config.json'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 class App extends Component {
   state = {
@@ -53,35 +55,38 @@ class App extends Component {
 
   render () {
     return (
-      <div className='container'>
-        <button onClick={() => this.handleAdd()} className='btn btn-primary btn-sm'>Add Post</button>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Title</th>
-              <th>Update</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              this.state.posts.map(post => (
-                <tr key={post.id}>
-                  <td>{post.id}</td>
-                  <td>{post.title}</td>
-                  <td>
-                    <button onClick={() => this.handleUpdate(post)} className='btn btn-info btn-sm'>Update</button>
-                  </td>
-                  <td>
-                    <button onClick={() => this.handleDelete(post)} className='btn btn-danger btn-sm'>Delete</button>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
+      <React.Fragment>
+        <ToastContainer/>
+        <div className='container'>
+          <button onClick={() => this.handleAdd()} className='btn btn-primary btn-sm'>Add Post</button>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                this.state.posts.map(post => (
+                  <tr key={post.id}>
+                    <td>{post.id}</td>
+                    <td>{post.title}</td>
+                    <td>
+                      <button onClick={() => this.handleUpdate(post)} className='btn btn-info btn-sm'>Update</button>
+                    </td>
+                    <td>
+                      <button onClick={() => this.handleDelete(post)} className='btn btn-danger btn-sm'>Delete</button>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </React.Fragment>
     )
   }
 }
