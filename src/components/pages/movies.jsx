@@ -3,11 +3,12 @@ import { NavLink } from "react-router-dom";
 import { toast } from 'react-toastify';
 import _ from 'lodash'
 import MovieTable from '../movie-table';
-import { fetchGenres, fetchMovies } from '../../services/api';
+import { fetchGenres, fetchMovies, deleteMovie } from '../../services/api';
 import Pagination from '../common/pagination';
 import { pagination } from '../../utils/pagination';
 import Genres from '../genres';
 import SearchBox from '../common/search-box';
+import { toaster } from '../common/toaster';
 
 class Movies extends Component {
     state = { 
@@ -20,19 +21,21 @@ class Movies extends Component {
         searchQuery: ''
      }
 
-     handleMovie = (id) => {
-         const movies = this.state.movies.filter((movie) => movie._id !== id)
-         this.setState({ movies })
+     handleMovie = async (id) => {
+        const originalMovies = this.state.movies
+        const movies = this.state.movies.filter((movie) => movie._id !== id)
+        this.setState({ movies })
 
-         toast.success('😎 Successfully Delete!', {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        })
+        try {
+            await deleteMovie(id)
+
+            toaster('success', '😎 Successfully Delete!')
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404)
+                toaster('error', 'This post already been deleted!')
+
+            this.setState({ movies: originalMovies })
+        }
      }
 
      handleLiked = (movie) => {
