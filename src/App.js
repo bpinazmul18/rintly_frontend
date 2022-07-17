@@ -1,20 +1,20 @@
 import { Component } from 'react';
 import http from './services/http';
+import config from '../src/config.json'
 
-const apiEndpoint = 'https://jsonplaceholder.typicode.com/posts'
 class App extends Component {
   state = {
     posts: []
   }
 
   async componentDidMount () {
-    const {data: posts} = await http.get(apiEndpoint)
+    const {data: posts} = await http.get(config.apiEndpoint)
     this.setState({ posts })
   }
 
   handleAdd = async () => {
     const obj = { title: 'a', body: 'b'}
-    const {data: post} = await http.post(apiEndpoint, obj)
+    const {data: post} = await http.post(config.apiEndpoint, obj)
 
     const posts = [post, ...this.state.posts]
 
@@ -23,7 +23,7 @@ class App extends Component {
 
   handleUpdate = async (post) => {
     post.title = 'update'
-    await http.patch(`${apiEndpoint}/${post.id}`, post)
+    await http.patch(`${config.apiEndpoint}/${post.id}`, post)
 
     const posts = [...this.state.posts]
     const index = posts.indexOf(post)
@@ -40,7 +40,7 @@ class App extends Component {
 
     // api call
     try {
-      await http.delete(`${apiEndpoint}/999/${post.id}`)
+      await http.delete(`${config.apiEndpoint}/${post.id}`)
     } catch(ex) {
       // show alert to the user
       if (ex.response && ex.response.status === 404)
