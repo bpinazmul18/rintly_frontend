@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
-import * as Sentry from "@sentry/react";
-import { BrowserTracing } from "@sentry/tracing";
+
+import logger from './services/logService'
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -28,16 +28,6 @@ import './index.css';
 
 const store = configureStore()
 
-
-Sentry.init({
-    dsn: "https://d2245646c59f4653ac7844c643e48075@o987748.ingest.sentry.io/6578919",
-    integrations: [new BrowserTracing()],
-
-    // Set tracesSampleRate to 1.0 to capture 100%
-    // of transactions for performance monitoring.
-    // We recommend adjusting this value in production
-    tracesSampleRate: 1.0,
-});
 
 // store.subscribe(() => {
 //     console.log('Store changed!', store.getState())
@@ -91,6 +81,10 @@ Sentry.init({
 
 // store.dispatch(addBug({ title: 'aaaaa', genreId: '62b713a58fbdd0a13b6f4677', numberInStock: 5, dailyRentalRate: 4}))
 // store.dispatch(resolvedBug(1))
+
+// Logger
+logger.init()
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>

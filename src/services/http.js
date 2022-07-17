@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from 'react-toastify';
-import * as Sentry from "@sentry/react";
+import logger from './logService'
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -11,7 +11,7 @@ axios.interceptors.response.use(null, error => {
     error.response.status < 500;
 
   if (!expectedError) {
-    Sentry.captureException(error)
+    logger.log(error)
     toast.error('An unexpected error occurred!')
   }
 
