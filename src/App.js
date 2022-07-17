@@ -1,91 +1,46 @@
 import React, { Component } from 'react';
-import http from './services/http';
-import config from '../src/config.json'
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+
+import Navbar from './components/navbar';
+import Movies from './components/pages/movies';
+import Home from './components/pages/home'
+import Login from './components/pages/login';
+import MovieForm from './components/pages/movie-form';
+import Customers from './components/pages/customers';
+import Rentals from './components/pages/rentals';
+import Register from './components/pages/register';
+import NewMovie from './components/pages/new-movie';
 
 class App extends Component {
-  state = {
-    posts: []
-  }
-
-  async componentDidMount () {
-    const {data: posts} = await http.get(config.apiEndpoint)
-    this.setState({ posts })
-  }
-
-  handleAdd = async () => {
-    const obj = { title: 'a', body: 'b'}
-    const {data: post} = await http.post(config.apiEndpoint, obj)
-
-    const posts = [post, ...this.state.posts]
-
-    this.setState({ posts })
-  }
-
-  handleUpdate = async (post) => {
-    post.title = 'update'
-    await http.patch(`${config.apiEndpoint}/${post.id}`, post)
-
-    const posts = [...this.state.posts]
-    const index = posts.indexOf(post)
-    posts[index] = {...post}
-
-    this.setState({ posts })
-  }
-
-  handleDelete = async (post) => {
-    const originalPosts = this.state.posts
-    // Immediatly remove ui
-    const posts = this.state.posts.filter(p => p.id !== post.id)
-    this.setState({ posts})
-
-    // api call
-    try {
-      await http.delete(`${config.apiEndpoint}/${post.id}`)
-    } catch(ex) {
-      // show alert to the user
-      if (ex.response && ex.response.status === 404)
-        alert('this post already been deleted!')
-      // revert the posts
-      this.setState({ posts: originalPosts })
-    }
-
-  }
-
   render () {
     return (
       <React.Fragment>
-        <ToastContainer/>
-        <div className='container'>
-          <button onClick={() => this.handleAdd()} className='btn btn-primary btn-sm'>Add Post</button>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Title</th>
-                <th>Update</th>
-                <th>Delete</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                this.state.posts.map(post => (
-                  <tr key={post.id}>
-                    <td>{post.id}</td>
-                    <td>{post.title}</td>
-                    <td>
-                      <button onClick={() => this.handleUpdate(post)} className='btn btn-info btn-sm'>Update</button>
-                    </td>
-                    <td>
-                      <button onClick={() => this.handleDelete(post)} className='btn btn-danger btn-sm'>Delete</button>
-                    </td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
+        <Navbar/>
+        <Routes>
+              <Route path='/' element={<Home/>}/>
+              <Route path='/login' element={<Login/>}/>
+              <Route path='/signup' element={<Register/>}/>
+              <Route path='/movies' element={<Movies/>}/>
+              <Route path='/movies/:id' element={<MovieForm/>}/>
+              <Route path='/movie/new' element={<NewMovie/>}/>
+              <Route path='/customers' element={<Customers/>}/>
+              <Route path='/rentals' element={<Rentals/>}/>
+              <Route path='/not-found' element={<p>NOT FOUND</p>}/>
+              <Route path='*' element={<Navigate to="/not-found" replace/>}/>
+          </Routes>
+          <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              />
+              {/* Same as */}
       </React.Fragment>
     )
   }
