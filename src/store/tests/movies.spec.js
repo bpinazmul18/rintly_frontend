@@ -1,7 +1,8 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import configureStore from "../configureStore";
-import {addMovie} from "../movies";
+import {addMovie, loadMovies} from "../movies";
+import {loadBugs} from "../bugs";
 
 describe('movieSlice', () => {
     let fakeAxios
@@ -39,5 +40,30 @@ describe('movieSlice', () => {
         await store.dispatch(addMovie(movie))
 
         expect(moviesSlice().list).toHaveLength(0)
+    })
+
+    describe('loading indicator', () => {
+        it ('should the true while fetching the movies', () => {
+            fakeAxios.onGet('/movies').reply(() => {
+                expect(moviesSlice().loading).toBe(true)
+                return [200, [{ id: 1}]]
+            })
+        })
+
+        it ('should the false after fetched the movies', async () => {
+            fakeAxios.onGet('/movies').reply(200, [{ id: 1}])
+
+            await store.dispatch(loadMovies())
+
+            expect(moviesSlice().loading).toBe(false)
+        })
+
+        it ('should the false if server is error', async () => {
+            fakeAxios.onGet('/movies').reply(500)
+
+            await store.dispatch(loadMovies())
+
+            expect(moviesSlice().loading).toBe(false)
+        })
     })
 })
