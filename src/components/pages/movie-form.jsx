@@ -28,17 +28,18 @@ class movieForm extends Form {
     }
 
     async componentDidMount () {
-        const {data: newGenre} = await fetchGenres()
-        const {data: {title, genre, numberInStock, dailyRentalRate}} = await fetchMovie(this.props.router.params.id)
-        
-        const newMovie = {
-            title,
-            genreId: genre._id,
-            numberInStock,
-            dailyRentalRate,
+        const {data: genres} = await fetchGenres()
+        this.setState({ genres })
+
+        try {
+            const {data: movie} = await fetchMovie(this.props.router.params.id)
+            const newMovie = {...movie, genreId: movie.genre._id}
+            this.setState({data: newMovie})
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404)
+                this.props.router.navigate('/not-found')
         }
         
-        this.setState({ genres: newGenre, data: newMovie})
     }
 
     doSubmit = async () => {
