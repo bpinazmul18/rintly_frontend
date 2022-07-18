@@ -37,11 +37,11 @@ class NewMovie extends Form {
         // calling the api
         try {
             await addMovie(this.state.data)
-            toaster('success', '😎 Successfully Delete!')
+            toaster('success', '😎 Successfully Added!')
             this.props.router.navigate('/movies')
         } catch (ex) {
             if (ex.response && ex.response.status === 404)
-                toaster('error', 'This post already been deleted!')
+                toaster('error', 'This post are not found!')
             console.log(ex.message)
         }
     }
