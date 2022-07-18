@@ -35,17 +35,29 @@ class movieForm extends Form {
     populateMovie = async () => {
         try {
             const {data: movie} = await fetchMovie(this.props.router.params.id)
-            const newMovie = {...movie, genreId: movie.genre._id}
-            this.setState({data: newMovie})
+            this.mapToMovie(movie)
+
         } catch (ex) {
             if (ex.response && ex.response.status === 404)
                 this.props.router.navigate('/not-found')
         }
     }
 
-    componentDidMount () {
-        this.populateGenre()
-        this.populateMovie()
+    mapToMovie = (movie) => {
+        const {title, genre, numberInStock, dailyRentalRate}  = movie
+        const newMovie = {
+            title,
+            genreId: genre._id,
+            numberInStock,
+            dailyRentalRate,
+        }
+
+        this.setState({data: newMovie})
+    }
+
+    async componentDidMount () {
+        await this.populateGenre()
+        await this.populateMovie()
     }
 
     doSubmit = async () => {

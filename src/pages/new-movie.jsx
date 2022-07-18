@@ -29,7 +29,6 @@ class NewMovie extends Form {
 
     async componentDidMount () {
         const genresRes = await fetchGenres()
-        
         this.setState({ genres: genresRes.data })
     }
 
