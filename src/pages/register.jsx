@@ -3,6 +3,8 @@ import Joi from 'joi-browser'
 
 import joinImg from '../assets/img/register.svg'
 import Form from '../components/common/form';
+import { register } from '../services/api';
+import { toaster } from '../components/common/toaster';
 
 class Register extends Form {
     state = {
@@ -17,12 +19,22 @@ class Register extends Form {
     schema = {
         email: Joi.string().email().required().label('Username'),
         password: Joi.string().min(5).required().label('Password'),
-        name: Joi.string().required().label('Name')
+        name: Joi.string().min(5).required().label('Name')
     }
 
-    doSubmit = () => {
-        // calling the api
-        console.log('handleSubmite fired!', this.state.data)
+    doSubmit = async () => {
+        try {
+            await register(this.state.data)
+            toaster('success', 'Register success.')
+        }
+        catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                const errors = {...this.state.errors}
+                errors.email = ex.response.data
+
+                this.setState({ errors })
+            }
+        }
     }
 
     render() {
