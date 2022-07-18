@@ -23,7 +23,7 @@ class Movies extends Component {
 
      handleMovie = async (id) => {
         const originalMovies = this.state.movies
-        const movies = this.state.movies.filter((movie) => movie._id !== id)
+        const movies = originalMovies.filter((movie) => movie._id !== id)
         this.setState({ movies })
 
         try {
