@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-import { toast } from 'react-toastify';
+import {connect} from "react-redux"
+
 import _ from 'lodash'
 import MovieTable from '../components/movie-table';
 import { fetchGenres, fetchMovies, deleteMovie } from '../services/api';
@@ -9,6 +10,8 @@ import { pagination } from '../utils/pagination';
 import Genres from '../components/genres';
 import SearchBox from '../components/common/search-box';
 import { toaster } from '../components/common/toaster';
+import {loadMovies, movieRemoved} from "../store/movies";
+import {loadGenres} from "../store/genres";
 
 class Movies extends Component {
     state = { 
@@ -23,8 +26,9 @@ class Movies extends Component {
 
      handleMovie = async (id) => {
         const originalMovies = this.state.movies
-        const movies = originalMovies.filter((movie) => movie._id !== id)
-        this.setState({ movies })
+         this.props.movieRemoved(id)
+        // const movies = originalMovies.filter((movie) => movie._id !== id)
+        // this.setState({ movies })
 
         try {
             await deleteMovie(id)
@@ -80,11 +84,21 @@ class Movies extends Component {
         return { totalCount: filtered.length, data: _movies}
      }
 
+     fetchData = async () => {
+         this.props.loadMovies()
+         this.props.loadGenres()
+
+         this.setState({ movies: this.props.movies, genres: [{'_id': '', 'name': 'All Movies'}, ...this.props.genres] })
+     }
+
      async componentDidMount () {
-         const moviesRes = await fetchMovies()
-         const genresRes = await fetchGenres()
-         
-         this.setState({ movies: moviesRes.data, genres: [{'_id': '', 'name': 'All Movies'}, ...genresRes.data] })
+         await this.fetchData()
+     }
+
+     async componentDidUpdate (prevProps,prevState ) {
+         if (prevProps.movies !== prevState.movies) {
+             await this.fetchData()
+         }
      }
     render() {
         const {sortColumn, selectedGenre, currentPage, movies, pageSize, genres, searchQuery} = this.state
@@ -118,5 +132,17 @@ class Movies extends Component {
         );
     }
 }
- 
-export default Movies;
+
+const mapStateToProps = state => ({
+    movies: state.entities.movies.list,
+    genres: state.entities.genres.list
+})
+
+const mapDispatchToProps = dispatch => ({
+    loadMovies: () => dispatch(loadMovies()),
+    loadGenres: () => dispatch(loadGenres()),
+    movieRemoved: (id) => dispatch(movieRemoved(id))
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movies)

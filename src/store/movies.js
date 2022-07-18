@@ -24,11 +24,15 @@ const slice = createSlice({
         },
         movieAdded: (movies, action) => {
             movies.list.push(action.payload)
+        },
+        movieRemoved: (movies, action) => {
+            const index = movies.list.findIndex((bug) => bug.id === action.payload.id)
+            movies.splice(index, 1)
         }
     }
 })
 
-export const {movieAdded, moviesRequested, moviesReceived, moviesRequestFailed} = slice.actions
+export const {movieRemoved, movieAdded, moviesRequested, moviesReceived, moviesRequestFailed} = slice.actions
 export default slice.reducer
 
 // Action creators
