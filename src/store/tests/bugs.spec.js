@@ -59,7 +59,16 @@ describe('bugSlice', () => {
     })
 
     describe('loading bugs', () => {
-        describe('if the bugs exist in the cache', () => {})
+        describe('if the bugs exist in the cache', () => {
+            it ('they should no fetched from the server again', async () => {
+                fakeAxios.onGet('/bugs').reply(200, [{ id: 1}])
+
+                await store.dispatch(loadBugs())
+                await store.dispatch(loadBugs())
+
+                expect(fakeAxios.history.get.length).toBe(1)
+            })
+        })
         describe('if the bugs don\'t exist in the cache', () => {
             describe('loading indicator', () => {
                 it ('should the true while fetching the bugs', () => {
