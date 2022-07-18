@@ -39,8 +39,10 @@ const slice = createSlice({
             bugs.splice(index, 1)
         },
         bugResolved: (bugs, action) => {
-            const index = bugs.list.findIndex((bug) => bug.id === action.payload.id)
-            bugs.list[index].resolved = true
+            // const index = bugs.list.findIndex((bug) => bug.id === action.payload.id)
+            // bugs.list[index].resolved = true
+
+            return bugs.list.filter(bug => bug.id === action.payload.id ? bug.resolved = true : bug)
         }
     }
 })

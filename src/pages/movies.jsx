@@ -10,7 +10,7 @@ import { pagination } from '../utils/pagination';
 import Genres from '../components/genres';
 import SearchBox from '../components/common/search-box';
 import { toaster } from '../components/common/toaster';
-import {loadMovies, movieRemoved} from "../store/movies";
+import {loadMovies, movieLiked, movieRemoved} from "../store/movies";
 import {loadGenres} from "../store/genres";
 
 class Movies extends Component {
@@ -27,8 +27,8 @@ class Movies extends Component {
      handleMovie = async (id) => {
         const originalMovies = this.state.movies
          this.props.movieRemoved(id)
-        // const movies = originalMovies.filter((movie) => movie._id !== id)
-        // this.setState({ movies })
+        const movies = originalMovies.filter((movie) => movie._id !== id)
+        this.setState({ movies })
 
         try {
             await deleteMovie(id)
@@ -49,6 +49,7 @@ class Movies extends Component {
          movies[index] = {...movies[index]}
          movies[index].liked = !movies[index].liked
 
+         this.props.movieLiked({id: movie._id})
          this.setState({ movies })
      }
 
@@ -141,7 +142,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     loadMovies: () => dispatch(loadMovies()),
     loadGenres: () => dispatch(loadGenres()),
-    movieRemoved: (id) => dispatch(movieRemoved(id))
+    movieRemoved: (id) => dispatch(movieRemoved(id)),
+    movieLiked: (id) => dispatch(movieLiked(id))
 })
 
 

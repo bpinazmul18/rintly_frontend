@@ -26,13 +26,17 @@ const slice = createSlice({
             movies.list.push(action.payload)
         },
         movieRemoved: (movies, action) => {
-            const index = movies.list.findIndex((bug) => bug.id === action.payload.id)
-            movies.splice(index, 1)
+            const index = movies.list.findIndex((movie) => movie.id === action.payload.id)
+            movies.list.splice(index, 1)
+        },
+        movieLiked: (movies, action) => {
+            const index = movies.list.findIndex((movie) => movie.id === action.payload.id)
+            movies.list[index].liked = !movies.list[index].liked
         }
     }
 })
 
-export const {movieRemoved, movieAdded, moviesRequested, moviesReceived, moviesRequestFailed} = slice.actions
+export const {movieLiked, movieRemoved, movieAdded, moviesRequested, moviesReceived, moviesRequestFailed} = slice.actions
 export default slice.reducer
 
 // Action creators

@@ -1,11 +1,13 @@
 import React from 'react';
 import Joi from 'joi-browser'
+import {connect} from "react-redux"
 
 import joinImg from '../assets/img/movie.svg'
 import Form from '../components/common/form';
 import { addMovie, fetchGenres } from '../services/api';
 import { withRouter } from '../components/with-router';
 import { toaster } from '../components/common/toaster';
+import { movieAdded} from "../store/movies";
 
 class NewMovie extends Form {
     state = {
@@ -21,7 +23,7 @@ class NewMovie extends Form {
 
     schema = {
         _id: Joi.string(),
-        title: Joi.string().required().label('Title'),
+        title: Joi.string().min(5).required().label('Title'),
         genreId: Joi.string().required().label('Genre'),
         numberInStock: Joi.number().required().min(0).max(100).label('Number in Stock'),
         dailyRentalRate: Joi.number().required().min(0).max(10).label('Daily Rental Rate')
@@ -35,6 +37,7 @@ class NewMovie extends Form {
     doSubmit = async () => {
         // calling the api
         try {
+            this.props.movieAdded(this.state.data)
             await addMovie(this.state.data)
             toaster('success', '😎 Successfully Added!')
             this.props.router.navigate('/movies')
@@ -71,5 +74,11 @@ class NewMovie extends Form {
         );
     }
 }
- 
-export default withRouter(NewMovie);
+
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = dispatch => ({
+    movieAdded: (movie) => dispatch(movieAdded(movie)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NewMovie))
