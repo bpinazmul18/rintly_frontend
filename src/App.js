@@ -3,14 +3,14 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import Navbar from './components/navbar';
-import Movies from './components/pages/movies';
-import Home from './components/pages/home'
-import Login from './components/pages/login';
-import MovieForm from './components/pages/movie-form';
-import Customers from './components/pages/customers';
-import Rentals from './components/pages/rentals';
-import Register from './components/pages/register';
-import NewMovie from './components/pages/new-movie';
+import Movies from './pages/movies';
+import Home from './pages/home'
+import Login from './pages/login';
+import MovieForm from './pages/movie-form';
+import Customers from './pages/customers';
+import Rentals from './pages/rentals';
+import Register from './pages/register';
+import NewMovie from './pages/new-movie';
 
 class App extends Component {
   render () {

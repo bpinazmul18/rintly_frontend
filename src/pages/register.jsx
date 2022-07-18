@@ -1,36 +1,33 @@
 import React from 'react';
 import Joi from 'joi-browser'
 
-import joinImg from '../../assets/img/join.svg'
-import Form from '../common/form';
-import { login } from '../../services/api';
-import { withRouter } from '../with-router';
+import joinImg from '../assets/img/register.svg'
+import Form from '../components/common/form';
 
-class Login extends Form {
+class Register extends Form {
     state = {
         data: {
             email: '',
-            password: ''
+            password: '',
+            name: ''
         },
         errors: {}
     }
 
     schema = {
         email: Joi.string().email().required().label('Username'),
-        password: Joi.string().min(5).required().label('Password')
+        password: Joi.string().min(5).required().label('Password'),
+        name: Joi.string().required().label('Name')
     }
 
-    doSubmit = async () => {
+    doSubmit = () => {
         // calling the api
-        const response = await login(this.state.data)
-        localStorage.setItem('token', response.data)
-
-        this.props.router.navigate('/')
+        console.log('handleSubmite fired!', this.state.data)
     }
 
     render() {
         return (
-            <div className="login-page py-5">
+            <div className="Register-page py-5">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-md-6">
@@ -38,12 +35,13 @@ class Login extends Form {
                         </div>
                         <div className="col-md-6">
                             <div className="page-title mb-4">
-                                <h2 className='display-3'>Login</h2>
+                                <h2 className='display-3'>Register</h2>
                             </div>
                             <form onSubmit={this.handleSubmit}>
+                                {this.renderedInput('Name', 'text', 'name')}
                                 {this.renderedInput('Email address', 'text', 'email')}
                                 {this.renderedInput('Password', 'password', 'password')}
-                                {this.renderedButton('Login')}
+                                {this.renderedButton('Register')}
                             </form>
                         </div>
                     </div>
@@ -53,4 +51,4 @@ class Login extends Form {
     }
 }
  
-export default withRouter(Login);
+export default Register;

@@ -1,13 +1,13 @@
 import React from 'react';
 import Joi from 'joi-browser'
 
-import joinImg from '../../assets/img/movie.svg'
-import Form from '../common/form';
-import { updateMovie, fetchMovie, fetchGenres } from '../../services/api';
-import { withRouter } from '../with-router';
-import { toaster } from '../common/toaster';
+import joinImg from '../assets/img/movie.svg'
+import Form from '../components/common/form';
+import { addMovie, fetchGenres } from '../services/api';
+import { withRouter } from '../components/with-router';
+import { toaster } from '../components/common/toaster';
 
-class movieForm extends Form {
+class NewMovie extends Form {
     state = {
         data: {
             title: '',
@@ -27,36 +27,21 @@ class movieForm extends Form {
         dailyRentalRate: Joi.number().required().min(0).max(10).label('Daily Rental Rate')
     }
 
-    populateGenre = async () => {
-        const {data: genres} = await fetchGenres()
-        this.setState({ genres })
-    }
-
-    populateMovie = async () => {
-        try {
-            const {data: movie} = await fetchMovie(this.props.router.params.id)
-            const newMovie = {...movie, genreId: movie.genre._id}
-            this.setState({data: newMovie})
-        } catch (ex) {
-            if (ex.response && ex.response.status === 404)
-                this.props.router.navigate('/not-found')
-        }
-    }
-
-    componentDidMount () {
-        this.populateGenre()
-        this.populateMovie()
+    async componentDidMount () {
+        const genresRes = await fetchGenres()
+        
+        this.setState({ genres: genresRes.data })
     }
 
     doSubmit = async () => {
         // calling the api
         try {
-            await updateMovie(this.props.router.params.id, this.state.data)
-            toaster('success', '😎 Successfully update!')
+            await addMovie(this.state.data)
+            toaster('success', '😎 Successfully Added!')
             this.props.router.navigate('/movies')
         } catch (ex) {
             if (ex.response && ex.response.status === 404)
-                toaster('error', 'This post already been deleted!')
+                toaster('error', 'This post are not found!')
             console.log(ex.message)
         }
     }
@@ -71,7 +56,7 @@ class movieForm extends Form {
                         </div>
                         <div className="col-md-6">
                             <div className="page-title mb-4">
-                                <h2 className='display-3'>Update Movie</h2>
+                                <h2 className='display-3'>New Movie</h2>
                             </div>
                             <form onSubmit={this.handleSubmit}>
                                 {this.renderedInput('Title', 'text', 'title')}
@@ -88,4 +73,4 @@ class movieForm extends Form {
     }
 }
  
-export default withRouter(movieForm);
+export default withRouter(NewMovie);

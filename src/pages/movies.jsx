@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 import { toast } from 'react-toastify';
 import _ from 'lodash'
-import MovieTable from '../movie-table';
-import { fetchGenres, fetchMovies, deleteMovie } from '../../services/api';
-import Pagination from '../common/pagination';
-import { pagination } from '../../utils/pagination';
-import Genres from '../genres';
-import SearchBox from '../common/search-box';
-import { toaster } from '../common/toaster';
+import MovieTable from '../components/movie-table';
+import { fetchGenres, fetchMovies, deleteMovie } from '../services/api';
+import Pagination from '../components/common/pagination';
+import { pagination } from '../utils/pagination';
+import Genres from '../components/genres';
+import SearchBox from '../components/common/search-box';
+import { toaster } from '../components/common/toaster';
 
 class Movies extends Component {
     state = { 
