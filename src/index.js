@@ -35,6 +35,7 @@ const store = configureStore()
 // })
 //
 // store.dispatch(bugAdded({ description: 'Bug add 1'}))
+// store.dispatch(resolvedBug(1))
 // store.dispatch(bugAdded({ description: 'Bug add 2'}))
 // store.dispatch({type: 'error', payload: { message: 'An error occurred.'}})
 //
@@ -88,7 +89,7 @@ const store = configureStore()
 //     numberInStock: 5,
 //     dailyRentalRate: 3
 // }
-// store.dispatch(addMovie(movie))
+// store.dispatch(addBug({ description: 'a'}))
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <BrowserRouter>

@@ -1,7 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import moment from "moment";
 import {apiCallBegan} from "./api";
-import {bugAdded} from "./bugs";
 
 
 const slice = createSlice({

@@ -40,7 +40,7 @@ const slice = createSlice({
         },
         bugResolved: (bugs, action) => {
             const index = bugs.list.findIndex((bug) => bug.id === action.payload.id)
-            bugs[index].resolved = true
+            bugs.list[index].resolved = true
         }
     }
 })
@@ -49,14 +49,14 @@ export const {bugAdded, bugRemoved, bugResolved, bugAssignedToUser, bugsReceived
 export default slice.reducer
 
 // Action creators
-const url = '/movies'
+const url = '/bugs'
 export const loadBugs = () => (dispatch, getState) => {
     const {lastFetch} = getState().entities.bugs
     const diffInMinutes = moment().diff(moment(lastFetch), 'minutes')
     if (diffInMinutes < 10) return
 
 
-    dispatch(apiCallBegan({
+    return dispatch(apiCallBegan({
         url,
         onStart: bugsRequested.type,
         onSuccess: bugsReceived.type,
@@ -83,10 +83,10 @@ export const resolvedBug = (id) => apiCallBegan({
 export const getUnResolvedBugs = createSelector(
     state => state.entities.bugs,
     state => state.entities.projects,
-    (bugs, projects) => bugs.filter(bug => !bug.resolved)
+    (bugs, projects) => bugs.list.filter(bug => !bug.resolved)
 )
 
 export const getBugsByUser = userId => createSelector(
     state => state.entities.bugs,
-    bugs => bugs.filter(bug => bug.userId === userId)
+    bugs => bugs.list.filter(bug => bug.userId === userId)
 )

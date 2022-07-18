@@ -30,11 +30,11 @@ const api = ({ dispatch }) => next => async action => {
             dispatch({ type: onSuccess, payload: response.data})
     } catch(error) {
         // General
-        // dispatch({ type: actions.apiCallFailed, payload: error.message})
+        dispatch({ type: actions.apiCallFailed, payload: error.message})
 
         // specific
-        // if (onError)
-        //     dispatch({ type: onError, payload: error.message})
+        if (onError)
+            return dispatch({ type: onError, payload: error.message})
     }
 }
 
