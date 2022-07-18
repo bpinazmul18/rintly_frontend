@@ -3,7 +3,9 @@ import Joi from 'joi-browser'
 
 import joinImg from '../../assets/img/movie.svg'
 import Form from '../common/form';
-import { fetchGenres } from '../../services/api';
+import { addMovie, fetchGenres } from '../../services/api';
+import { withRouter } from '../with-router';
+import { toaster } from '../common/toaster';
 
 class NewMovie extends Form {
     state = {
@@ -31,9 +33,17 @@ class NewMovie extends Form {
         this.setState({ genres: genresRes.data })
     }
 
-    doSubmit = () => {
+    doSubmit = async () => {
         // calling the api
-        console.log('handleSubmite fired!', this.state.data)
+        try {
+            await addMovie(this.state.data)
+            toaster('success', '😎 Successfully Delete!')
+            this.props.router.navigate('/movies')
+        } catch (ex) {
+            if (ex.response && ex.response.status === 404)
+                toaster('error', 'This post already been deleted!')
+            console.log(ex.message)
+        }
     }
 
     render() {
@@ -63,4 +73,4 @@ class NewMovie extends Form {
     }
 }
  
-export default NewMovie;
+export default withRouter(NewMovie);
