@@ -27,10 +27,12 @@ class movieForm extends Form {
         dailyRentalRate: Joi.number().required().min(0).max(10).label('Daily Rental Rate')
     }
 
-    async componentDidMount () {
+    populateGenre = async () => {
         const {data: genres} = await fetchGenres()
         this.setState({ genres })
+    }
 
+    populateMovie = async () => {
         try {
             const {data: movie} = await fetchMovie(this.props.router.params.id)
             const newMovie = {...movie, genreId: movie.genre._id}
@@ -39,7 +41,11 @@ class movieForm extends Form {
             if (ex.response && ex.response.status === 404)
                 this.props.router.navigate('/not-found')
         }
-        
+    }
+
+    componentDidMount () {
+        this.populateGenre()
+        this.populateMovie()
     }
 
     doSubmit = async () => {
