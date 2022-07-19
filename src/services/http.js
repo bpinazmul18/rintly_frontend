@@ -4,6 +4,7 @@ import logger from './logService'
 import config from '../config.json'
 
 axios.defaults.baseURL = config.apiEndpoint
+axios.defaults.headers.common['x-auth-token'] = localStorage.getItem(config.tokenKey)
 
 axios.interceptors.response.use(null, error => {
   const expectedError =

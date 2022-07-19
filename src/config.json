@@ -1,3 +1,4 @@
 {
-    "apiEndpoint": "https://rintly.herokuapp.com/api"
+    "apiEndpoint": "https://rintly.herokuapp.com/api",
+    "tokenKey": "token"
 }
