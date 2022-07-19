@@ -28,7 +28,8 @@ class Login extends Form {
             localStorage.setItem('token', response.data)
 
             toaster('success', 'Login success.')
-            this.props.router.navigate('/')
+            // this.props.router.navigate('/')
+            window.location = '/'
         }
         catch (ex) {
             if (ex.response && ex.response.status === 400) {

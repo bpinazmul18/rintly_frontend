@@ -29,7 +29,8 @@ class Register extends Form {
             localStorage.setItem('token', response.headers['x-auth-token'])
 
             toaster('success', 'Register success.')
-            this.props.router.navigate('/')
+            // this.props.router.navigate('/')
+            window.location = '/'
         }
         catch (ex) {
             if (ex.response && ex.response.status === 400) {

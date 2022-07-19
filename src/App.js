@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import jwtDecode from 'jwt-decode'
 import { ToastContainer } from 'react-toastify';
 
 import Navbar from './components/navbar';
@@ -13,10 +14,20 @@ import Register from './pages/register';
 import NewMovie from './pages/new-movie';
 
 class App extends Component {
+  state = {}
+
+  componentDidMount () {
+    try {
+      const jwt = localStorage.getItem('token')
+      const user = jwtDecode(jwt)
+      this.setState({ user})
+    } catch (ex) {}
+  }
+
   render () {
     return (
       <React.Fragment>
-        <Navbar/>
+        <Navbar user={this.state.user}/>
         <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/login' element={<Login/>}/>

@@ -1,10 +1,11 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
-const Navbar = () => {
+const Navbar = ({ user }) => {
     const navigate = useNavigate()
 
     const handleLogout = () => {
         localStorage.removeItem('token')
-        navigate('/login')
+        // navigate('/login')
+        window.location = '/login'
     }
 
     const renderLogout = () => (
@@ -43,7 +44,7 @@ const Navbar = () => {
                 
 
                 {
-                    localStorage.getItem('token') ? renderLogout() : renderLogin()
+                    user ? renderLogout() : renderLogin()
                 }
 
             </div>
