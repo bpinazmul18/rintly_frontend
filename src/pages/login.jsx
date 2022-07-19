@@ -24,11 +24,9 @@ class Login extends Form {
     doSubmit = async () => {
 
         try {
-            const response = await login(this.state.data)
-            localStorage.setItem('token', response.data)
-
+            await login(this.state.data)
+            
             toaster('success', 'Login success.')
-            // this.props.router.navigate('/')
             window.location = '/'
         }
         catch (ex) {

@@ -1,3 +1,4 @@
+import jwtDecode from 'jwt-decode'
 import http from "./http";
 
 // Movies
@@ -14,4 +15,19 @@ export const fetchGenres = () => http.get('/genres')
 export const register = (data) => http.post('/users', data)
 
 // Auth
-export const login = (data) => http.post('/auth', data)
+export const login = async (data) => {
+    const response = await http.post('/auth', data)
+    localStorage.setItem('token', response.data)
+}
+
+export const loginWithJwt = (jwt) => localStorage.setItem('token', jwt)
+export const logout = () => localStorage.clear()
+
+export const getCurrentUser = () => {
+    try {
+        const jwt = localStorage.getItem('token')
+        return jwtDecode(jwt)
+      } catch (ex) {
+        return null
+      }
+}

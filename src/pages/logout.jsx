@@ -1,8 +1,9 @@
 import { Component } from 'react';
+import { logout } from '../services/api';
 class Logout extends Component {
 
     componentDidMount () {
-        localStorage.clear()
+        logout()
         window.location = '/login'
     }
     render() { 
