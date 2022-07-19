@@ -24,12 +24,11 @@ class Login extends Form {
     doSubmit = async () => {
 
         try {
-            const response = await login(this.state.data)
-            // localStorage.setItem('token', response.data)
-            console.log(response)
+            const {data: jwt} = await login(this.state.data)
+            localStorage.setItem('token', jwt)
 
             toaster('success', 'Login success.')
-            // this.props.router.navigate('/')
+            this.props.router.navigate('/')
         }
         catch (ex) {
             if (ex.response && ex.response.status === 400) {
