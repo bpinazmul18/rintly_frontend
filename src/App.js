@@ -13,6 +13,7 @@ import Register from './pages/register';
 import NewMovie from './pages/new-movie';
 import Logout from './pages/logout';
 import auth from './services/auth';
+import ProtectedRoute from "./components/common/protected-route";
 
 class App extends Component {
   state = {}
@@ -27,17 +28,21 @@ class App extends Component {
       <React.Fragment>
         <Navbar user={this.state.user}/>
         <Routes>
-              <Route path='/' element={<Home/>}/>
-              <Route path='/login' element={<Login/>}/>
-              <Route path='/logout' element={<Logout/>}/>
-              <Route path='/signup' element={<Register/>}/>
-              <Route path='/movies' element={<Movies user={this.state.user}/>}/>
-              <Route path='/movies/:id' element={<MovieForm/>}/>
-              <Route path='/movie/new' element={<NewMovie/>}/>
-              <Route path='/customers' element={<Customers/>}/>
-              <Route path='/rentals' element={<Rentals/>}/>
-              <Route path='/not-found' element={<p>NOT FOUND</p>}/>
-              <Route path='*' element={<Navigate to="/not-found" replace/>}/>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/logout' element={<Logout/>}/>
+            <Route path='/signup' element={<Register/>}/>
+            <Route path='movies/' element={<Movies user={this.state.user}/>}/>
+            <Route path='movies/:id' element={<MovieForm/>}/>
+            <Route path='customers' element={<Customers/>}/>
+            <Route path='rentals' element={<Rentals/>}/>
+
+            <Route path="/*" element={<ProtectedRoute/>}>
+                <Route path='movies/new' element={<NewMovie/>}/>
+            </Route>
+
+            <Route path='/not-found' element={<p>NOT FOUND</p>}/>
+            <Route path='*' element={<Navigate to="/not-found" replace/>}/>
           </Routes>
           <ToastContainer
               position="top-right"

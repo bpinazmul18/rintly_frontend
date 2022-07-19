@@ -115,7 +115,7 @@ class Movies extends Component {
                     <div className="d-flex align-items-center justify-content-between">
                         <p className='lead'>There are {totalCount} movies in the database.</p>
                         {
-                            this.props.user && <NavLink className="btn btn-primary rounded-pill" to="/movie/new">New Movie</NavLink>
+                            this.props.user && <NavLink className="btn btn-primary rounded-pill" to="/movies/new">New Movie</NavLink>
                         }
 
                     </div>
