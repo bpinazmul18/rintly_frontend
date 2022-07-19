@@ -4,7 +4,7 @@ import {connect} from "react-redux"
 
 import _ from 'lodash'
 import MovieTable from '../components/movie-table';
-import { fetchGenres, fetchMovies, deleteMovie } from '../services/api';
+import { deleteMovie } from '../services/movies';
 import Pagination from '../components/common/pagination';
 import { pagination } from '../utils/pagination';
 import Genres from '../components/genres';

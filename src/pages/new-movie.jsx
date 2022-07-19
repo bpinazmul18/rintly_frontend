@@ -4,7 +4,8 @@ import {connect} from "react-redux"
 
 import joinImg from '../assets/img/movie.svg'
 import Form from '../components/common/form';
-import { addMovie, fetchGenres } from '../services/api';
+import { addMovie } from '../services/movies';
+import { fetchGenres } from '../services/genres';
 import { withRouter } from '../components/with-router';
 import { toaster } from '../components/common/toaster';
 import { movieAdded} from "../store/movies";

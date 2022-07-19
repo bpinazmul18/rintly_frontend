@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import { logout } from '../services/api';
+import auth from '../services/auth';
 class Logout extends Component {
 
     componentDidMount () {
-        logout()
+        auth.logout()
         window.location = '/login'
     }
     render() { 

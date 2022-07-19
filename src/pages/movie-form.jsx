@@ -3,7 +3,8 @@ import Joi from 'joi-browser'
 
 import joinImg from '../assets/img/movie.svg'
 import Form from '../components/common/form';
-import { updateMovie, fetchMovie, fetchGenres } from '../services/api';
+import { updateMovie, fetchMovie } from '../services/movies';
+import { fetchGenres } from '../services/genres';
 import { withRouter } from '../components/with-router';
 import { toaster } from '../components/common/toaster';
 

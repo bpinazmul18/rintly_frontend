@@ -3,9 +3,10 @@ import Joi from 'joi-browser'
 
 import joinImg from '../assets/img/register.svg'
 import Form from '../components/common/form';
-import { register, loginWithJwt } from '../services/api';
+import auth from '../services/auth';
 import { toaster } from '../components/common/toaster';
 import { withRouter } from '../components/with-router';
+import {register} from "../services/users";
 
 class Register extends Form {
     state = {
@@ -26,7 +27,7 @@ class Register extends Form {
     doSubmit = async () => {
         try {
             const response = await register(this.state.data)
-            loginWithJwt(response.headers['x-auth-token'])
+            auth.loginWithJwt(response.headers['x-auth-token'])
 
             toaster('success', 'Register success.')
             window.location = '/'

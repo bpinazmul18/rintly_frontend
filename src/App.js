@@ -12,13 +12,13 @@ import Rentals from './pages/rentals';
 import Register from './pages/register';
 import NewMovie from './pages/new-movie';
 import Logout from './pages/logout';
-import { getCurrentUser } from './services/api';
+import auth from './services/auth';
 
 class App extends Component {
   state = {}
 
   componentDidMount () {
-    const user = getCurrentUser()
+    const user = auth.getCurrentUser()
     this.setState({ user})
   }
 

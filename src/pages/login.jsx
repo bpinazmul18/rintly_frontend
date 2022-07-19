@@ -3,7 +3,7 @@ import Joi from 'joi-browser'
 
 import joinImg from '../assets/img/join.svg'
 import Form from '../components/common/form';
-import { login } from '../services/api';
+import auth from '../services/auth';
 import { withRouter } from '../components/with-router';
 import { toaster } from '../components/common/toaster';
 
@@ -24,7 +24,7 @@ class Login extends Form {
     doSubmit = async () => {
 
         try {
-            await login(this.state.data)
+            await auth.login(this.state.data)
             
             toaster('success', 'Login success.')
             window.location = '/'
