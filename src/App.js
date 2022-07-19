@@ -12,6 +12,7 @@ import Customers from './pages/customers';
 import Rentals from './pages/rentals';
 import Register from './pages/register';
 import NewMovie from './pages/new-movie';
+import Logout from './pages/logout';
 
 class App extends Component {
   state = {}
@@ -31,6 +32,7 @@ class App extends Component {
         <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/login' element={<Login/>}/>
+              <Route path='/logout' element={<Logout/>}/>
               <Route path='/signup' element={<Register/>}/>
               <Route path='/movies' element={<Movies/>}/>
               <Route path='/movies/:id' element={<MovieForm/>}/>

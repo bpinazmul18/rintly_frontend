@@ -3,9 +3,9 @@ const Navbar = ({ user }) => {
     const navigate = useNavigate()
 
     const handleLogout = () => {
-        localStorage.removeItem('token')
+        // localStorage.removeItem('token')
         // navigate('/login')
-        window.location = '/login'
+        window.location = '/logout'
     }
 
     const renderLogout = () => (
