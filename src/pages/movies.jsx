@@ -25,18 +25,21 @@ class Movies extends Component {
      }
 
      handleMovie = async (id) => {
-        const originalMovies = this.state.movies
-         this.props.movieRemoved(id)
-        const movies = originalMovies.filter((movie) => movie._id !== id)
-        this.setState({ movies })
+         const originalMovies = this.state.movies
 
-        try {
+         try {
+            const movies = originalMovies.filter((movie) => movie._id !== id)
+            this.setState({ movies })
+
             await deleteMovie(id)
 
-            toaster('success', '😎 Successfully Delete!')
+            toaster('success', 'Successfully Delete!')
         } catch (ex) {
             if (ex.response && ex.response.status === 404)
                 toaster('error', 'This post already been deleted!')
+
+             if (ex.response && ex.response.status === 403)
+                 toaster('error', ex.response.data)
 
             this.setState({ movies: originalMovies })
         }
@@ -142,7 +145,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     loadMovies: () => dispatch(loadMovies()),
     loadGenres: () => dispatch(loadGenres()),
-    movieRemoved: (id) => dispatch(movieRemoved(id)),
     movieLiked: (id) => dispatch(movieLiked(id))
 })
 

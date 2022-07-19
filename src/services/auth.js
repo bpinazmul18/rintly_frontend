@@ -2,6 +2,9 @@ import http from "./http";
 import config from "../config.json";
 import jwtDecode from "jwt-decode";
 
+const getJwt = () => localStorage.getItem(config.tokenKey)
+http.setJwt(getJwt())
+
 const login = async (data) => {
     const response = await http.post('/auth', data)
     localStorage.setItem(config.tokenKey, response.data)
@@ -18,8 +21,6 @@ const getCurrentUser = () => {
         return null
     }
 }
-
-const getJwt = () => localStorage.getItem(config.tokenKey)
 
 const auth = {
     login,
