@@ -15,10 +15,10 @@ import {loadGenres} from "../store/genres";
 
 class Movies extends Component {
     state = { 
-        movies: [],
+        movies: this.props.movies,
         currentPage: 1,
         pageSize: 3,
-        genres: [],
+        genres: [{'_id': '', 'name': 'All Movies'}, ...this.props.genres],
         selectedGenre: null,
         sortColumn: {path: 'title', order: 'asc'},
         searchQuery: ''
@@ -91,19 +91,17 @@ class Movies extends Component {
      fetchData = async () => {
          this.props.loadMovies()
          this.props.loadGenres()
-
-         this.setState({ movies: this.props.movies, genres: [{'_id': '', 'name': 'All Movies'}, ...this.props.genres] })
      }
 
      async componentDidMount () {
          await this.fetchData()
      }
 
-     async componentDidUpdate (prevProps,prevState ) {
-         if (prevProps.movies !== prevState.movies) {
-             await this.fetchData()
-         }
-     }
+     // async componentDidUpdate (prevProps,prevState ) {
+     //     if (prevProps.movies !== prevState.movies) {
+     //         await this.fetchData()
+     //     }
+     // }
     render() {
         const {sortColumn, selectedGenre, currentPage, movies, pageSize, genres, searchQuery} = this.state
 
