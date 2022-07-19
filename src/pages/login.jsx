@@ -5,6 +5,7 @@ import joinImg from '../assets/img/join.svg'
 import Form from '../components/common/form';
 import { login } from '../services/api';
 import { withRouter } from '../components/with-router';
+import { toaster } from '../components/common/toaster';
 
 class Login extends Form {
     state = {
@@ -21,11 +22,23 @@ class Login extends Form {
     }
 
     doSubmit = async () => {
-        // calling the api
-        const response = await login(this.state.data)
-        localStorage.setItem('token', response.data)
 
-        this.props.router.navigate('/')
+        try {
+            const response = await login(this.state.data)
+            // localStorage.setItem('token', response.data)
+            console.log(response)
+
+            toaster('success', 'Login success.')
+            // this.props.router.navigate('/')
+        }
+        catch (ex) {
+            if (ex.response && ex.response.status === 400) {
+                const errors = {...this.state.errors}
+                errors.email = ex.response.data
+
+                this.setState({ errors })
+            }
+        }
     }
 
     render() {

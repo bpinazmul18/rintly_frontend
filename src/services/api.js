@@ -12,4 +12,6 @@ export const fetchGenres = () => http.get('/genres')
 
 // Users
 export const register = (data) => http.post('/users', data)
+
+// Auth
 export const login = (data) => http.post('/auth', data)
