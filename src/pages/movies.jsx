@@ -10,7 +10,7 @@ import { pagination } from '../utils/pagination';
 import Genres from '../components/genres';
 import SearchBox from '../components/common/search-box';
 import { toaster } from '../components/common/toaster';
-import {loadMovies, movieLiked, movieRemoved} from "../store/movies";
+import {loadMovies, movieLiked} from "../store/movies";
 import {loadGenres} from "../store/genres";
 
 class Movies extends Component {
@@ -18,7 +18,7 @@ class Movies extends Component {
         movies: this.props.movies,
         currentPage: 1,
         pageSize: 3,
-        genres: [{'_id': '', 'name': 'All Movies'}, ...this.props.genres],
+        genres: [],
         selectedGenre: null,
         sortColumn: {path: 'title', order: 'asc'},
         searchQuery: ''
@@ -91,17 +91,19 @@ class Movies extends Component {
      fetchData = async () => {
          this.props.loadMovies()
          this.props.loadGenres()
+
+         this.setState({ movies: this.props.movies, genres: [{'_id': '', 'name': 'All Movies'}, ...this.props.genres] })
      }
 
      async componentDidMount () {
          await this.fetchData()
      }
 
-     // async componentDidUpdate (prevProps,prevState ) {
-     //     if (prevProps.movies !== prevState.movies) {
-     //         await this.fetchData()
-     //     }
-     // }
+     async componentDidUpdate (prevProps,prevState ) {
+         if (prevProps.movies !== prevState.movies) {
+             await this.fetchData()
+         }
+     }
     render() {
         const {sortColumn, selectedGenre, currentPage, movies, pageSize, genres, searchQuery} = this.state
 
