@@ -31,7 +31,7 @@ class App extends Component {
               <Route path='/login' element={<Login/>}/>
               <Route path='/logout' element={<Logout/>}/>
               <Route path='/signup' element={<Register/>}/>
-              <Route path='/movies' element={<Movies/>}/>
+              <Route path='/movies' element={<Movies user={this.state.user}/>}/>
               <Route path='/movies/:id' element={<MovieForm/>}/>
               <Route path='/movie/new' element={<NewMovie/>}/>
               <Route path='/customers' element={<Customers/>}/>
