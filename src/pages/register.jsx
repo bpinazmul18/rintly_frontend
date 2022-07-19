@@ -5,6 +5,7 @@ import joinImg from '../assets/img/register.svg'
 import Form from '../components/common/form';
 import { register } from '../services/api';
 import { toaster } from '../components/common/toaster';
+import { withRouter } from '../components/with-router';
 
 class Register extends Form {
     state = {
@@ -24,8 +25,11 @@ class Register extends Form {
 
     doSubmit = async () => {
         try {
-            await register(this.state.data)
+            const response = await register(this.state.data)
+            localStorage.setItem('token', response.headers['x-auth-token'])
+
             toaster('success', 'Register success.')
+            this.props.router.navigate('/')
         }
         catch (ex) {
             if (ex.response && ex.response.status === 400) {
@@ -63,4 +67,4 @@ class Register extends Form {
     }
 }
  
-export default Register;
+export default withRouter(Register);

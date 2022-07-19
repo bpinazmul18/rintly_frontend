@@ -24,8 +24,8 @@ class Login extends Form {
     doSubmit = async () => {
 
         try {
-            const {data: jwt} = await login(this.state.data)
-            localStorage.setItem('token', jwt)
+            const response = await login(this.state.data)
+            localStorage.setItem('token', response.data)
 
             toaster('success', 'Login success.')
             this.props.router.navigate('/')
