@@ -1,15 +1,12 @@
 import React from "react"
-import {Navigate, Outlet } from 'react-router-dom'
+import {Navigate, Outlet, useLocation } from 'react-router-dom'
 import auth from "../../services/auth";
-import {withRouter} from "../with-router";
 
-const ProtectedRoute = (props) => {
+const ProtectedRoute = () => {
+    const location = useLocation()
     const user = auth.getCurrentUser()
-    return user ? <Outlet/> : <Navigate to={{
-            pathname: '/login',
-            state: { from: props.router.location}
-        }
-    }/>
+
+    return user ? <Outlet/> : <Navigate to="/login" state={{ from: location}}/>
 }
 
-export default withRouter(ProtectedRoute)
+export default ProtectedRoute

@@ -24,13 +24,11 @@ class Login extends Form {
     doSubmit = async () => {
 
         try {
-            // await auth.login(this.state.data)
+            await auth.login(this.state.data)
             
-            // toaster('success', 'Login success.')
-            // const {pathname} = this.props.router.location
-            // console.log(pathname ? pathname : '/')
-            // window.location = pathname ? pathname : '/'
-            console.log(this.props.router)
+            toaster('success', 'Login success.')
+            const {pathname} = this.props.router.location.state.from
+            window.location = pathname ? pathname : '/'
         }
         catch (ex) {
             if (ex.response && ex.response.status === 400) {
@@ -43,8 +41,6 @@ class Login extends Form {
     }
 
     render() {
-        console.log(this.props.router)
-
         return (
             <div className="login-page py-5">
                 <div className="container">
