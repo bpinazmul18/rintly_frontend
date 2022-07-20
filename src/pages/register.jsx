@@ -7,6 +7,7 @@ import auth from '../services/auth';
 import { toaster } from '../components/common/toaster';
 import { withRouter } from '../components/with-router';
 import {register} from "../services/users";
+import { Navigate } from 'react-router-dom';
 
 class Register extends Form {
     state = {
@@ -43,6 +44,8 @@ class Register extends Form {
     }
 
     render() {
+        if (auth.getCurrentUser()) return <Navigate to="/"/>
+
         return (
             <div className="Register-page py-5">
                 <div className="container">

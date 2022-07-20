@@ -1,4 +1,5 @@
 import React from 'react';
+import {Navigate } from 'react-router-dom'
 import Joi from 'joi-browser'
 
 import joinImg from '../assets/img/join.svg'
@@ -41,6 +42,8 @@ class Login extends Form {
     }
 
     render() {
+        if (auth.getCurrentUser()) return <Navigate to="/" />
+
         return (
             <div className="login-page py-5">
                 <div className="container">
