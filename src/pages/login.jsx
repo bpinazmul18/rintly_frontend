@@ -22,13 +22,13 @@ class Login extends Form {
     }
 
     doSubmit = async () => {
-
         try {
             await auth.login(this.state.data)
             
             toaster('success', 'Login success.')
-            const {pathname} = this.props.router.location.state.from
-            window.location = pathname ? pathname : '/'
+
+            const state = this.props.router.location.state
+            window.location = state ? state.from.pathname : '/'
         }
         catch (ex) {
             if (ex.response && ex.response.status === 400) {
