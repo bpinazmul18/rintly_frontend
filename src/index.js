@@ -19,7 +19,7 @@ const store = configureStore()
 store.dispatch(bugAdded({ description: '1'}))
 store.dispatch(bugResolved({ id: 1}))
 
-// logger.init()
+logger.init()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
