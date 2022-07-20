@@ -15,7 +15,7 @@ import {loadGenres} from "../store/genres";
 
 class Movies extends Component {
     state = { 
-        movies: this.props.movies,
+        movies: [],
         currentPage: 1,
         pageSize: 3,
         genres: [],
