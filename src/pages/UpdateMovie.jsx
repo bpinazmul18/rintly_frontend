@@ -76,7 +76,7 @@ class UpdateMovie extends Form {
 
     render() {
         return (
-            <div className="login-page py-5">
+            <div className="update-movie-page full-height py-5">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-md-6">

@@ -45,7 +45,7 @@ class Login extends Form {
         if (auth.getCurrentUser()) return <Navigate to="/" />
 
         return (
-            <div className="login-page py-5">
+            <div className="login-page full-height py-5">
                 <div className="container">
                     <div className="row align-items-center">
                         <div className="col-md-6">

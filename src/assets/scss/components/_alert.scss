@@ -1,5 +1,9 @@
 .alert {
+  font-size: 1.4rem;
+  line-height: normal;
+
   &-danger {
-    padding: 0.8rem 1.4rem;
+    padding: 0.4rem 1.4rem;
+    color: $danger;
   }
 }
