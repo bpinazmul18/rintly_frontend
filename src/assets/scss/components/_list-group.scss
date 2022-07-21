@@ -1,0 +1,10 @@
+.list-group {
+  .list-group-item {
+    padding: 1.4rem 1.8rem;
+
+    &.active {
+      background-color: $blue;
+      border-color: $blue;
+    }
+  }
+}

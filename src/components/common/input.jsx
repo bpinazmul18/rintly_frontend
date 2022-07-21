@@ -10,7 +10,7 @@ const Input = ({ name, label, error, ...rest}) => {
                 className="form-control rounded-pill" 
                 placeholder={`Enter ${name}...`}
              />
-            {error && <div className="alert alert-danger my-3 py-1 rounded-3">{error}</div> }
+            {error && <div className="alert alert-danger my-3 rounded-3">{error}</div> }
         </div>
      );
 }

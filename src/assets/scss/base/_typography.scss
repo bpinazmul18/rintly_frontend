@@ -16,3 +16,13 @@ body {
   text-rendering: optimizeLegibility;
   background-color: $light;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.lead {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
