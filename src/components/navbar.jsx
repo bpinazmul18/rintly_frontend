@@ -1,55 +1,52 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
-const Navbar = ({ user }) => {
-    const navigate = useNavigate()
+import { useNavigate } from "react-router-dom";
+import { Container, Nav, Navbar } from 'react-bootstrap'
 
-    const handleLogout = () => {
-        // localStorage.removeItem('token')
-        // navigate('/login')
-        window.location = '/logout'
-    }
+import NavItem from './common/nav-item';
 
-    const renderLogout = () => (
-        <div>
-            <button onClick={() => handleLogout()} className="btn btn-primary px-4 rounded-pill ms-1">Logout</button>
-        </div>
-    )
+import logo from '../assets/img/play-logo.png'
 
-    const renderLogin = () => (
-        <div>
-            <button onClick={() => navigate('/login')} className="btn btn-outline-primary px-4 rounded-pill me-1">Login</button>
-            <button onClick={() => navigate('/signup')} className="btn btn-primary px-4 rounded-pill ms-1">Register</button>
-        </div>
-    )
+
+const NavBar = ({ user }) => {
+        const navigate = useNavigate()
+
+        const handleLogout = () => {
+            window.location = '/logout'
+        }
+
+        const renderLogout = () => (
+            <div>
+                <button onClick={() => handleLogout()} className="btn btn-primary px-4 rounded-pill ms-1">Logout</button>
+            </div>
+        )
+
+        const renderLogin = () => (
+            <div>
+                <button onClick={() => navigate('/login')} className="btn btn-outline-primary px-4 rounded-pill me-1">Login</button>
+                <button onClick={() => navigate('/signup')} className="btn btn-primary px-4 rounded-pill ms-1">Register</button>
+            </div>
+        )
 
     return (
-        <nav className="navbar navbar-light bg-light">
-            <div className="container">
-                <Link className="navbar-brand" to="/">Navbar</Link>
-    
-                <ul className="navbar-nav flex-row">
-                    <li className="nav-item">
-                        <NavLink className="nav-link px-3" to="/">Home</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link px-3" to="/movies">Movies</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link px-3" to="/customers">Customers</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link px-3" to="/rentals">Rentals</NavLink>
-                    </li>
-                </ul>
-    
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Container>
+                <Navbar.Brand href="home">
+                    <img className='w-25' src={logo} alt="Play logo"/>
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mx-auto" as="ul">
+                        <NavItem to='/' linkName="Home"/>
+                        <NavItem to='/movies' linkName="Movies"/>
+                    </Nav>
+
+                    <Nav>
+                        {user ? renderLogout() : renderLogin()}
+                    </Nav>
                 
-
-                {
-                    user ? renderLogout() : renderLogin()
-                }
-
-            </div>
-        </nav>
-    );
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    )
 }
- 
-export default Navbar;
+
+export default NavBar;

@@ -10,15 +10,10 @@ import reportWebVitals from './reportWebVitals';
 
 
 import 'react-toastify/dist/ReactToastify.css';
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';
-import {bugAdded, bugResolved} from "./store/bugs";
 
 const store = configureStore()
-
-store.dispatch(bugAdded({ description: '1'}))
-store.dispatch(bugResolved({ id: 1}))
-
 logger.init()
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
