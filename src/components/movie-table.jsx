@@ -14,7 +14,7 @@ class MovieTable extends Component {
         {key: 'liked', content: (movie) => <Like liked={movie?.liked} onLiked={() => this.props.onLiked(movie)}/>}
     ]
 
-    deleteColumn = {key: 'delete', content: (movie) => <button onClick={() => this.props.onHandleMovie(movie._id)} className="btn btn-danger btn-sm">Delete</button>}
+    deleteColumn = {key: 'delete', content: (movie) => <button onClick={() => this.props.onHandleMovie(movie._id)} className="btn btn-danger btn px-5 py-3">Delete</button>}
 
     constructor () {
         super()
