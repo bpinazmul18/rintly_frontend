@@ -4,7 +4,7 @@ const Genres = ({ selectedItem, genres, textProperty, valueProperty, onHandleGen
             <ul className="list-group">
                 {
                     genres.map((genre) => (
-                        <li className={`list-group-item clickable ${genre === selectedItem ? 'active' : ''}`} onClick={() => onHandleGenre(genre)} key={genre[valueProperty]} >{genre[textProperty]}</li>
+                        <li className={`list-group-item text-light clickable ${genre === selectedItem ? 'active' : ''}`} onClick={() => onHandleGenre(genre)} key={genre[valueProperty]} >{genre[textProperty]}</li>
                     ))
                 }
             </ul>

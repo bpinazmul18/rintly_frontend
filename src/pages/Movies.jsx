@@ -113,7 +113,7 @@ class Movies extends Component {
             <>
                 <div className="container movies-page py-5">
                     <div className="d-flex align-items-center justify-content-between">
-                        <p className='lead'>There are {totalCount} movies in the database.</p>
+                        <p className='lead text-light'>There are {totalCount} movies in the database.</p>
                         {
                             this.props.user && <NavLink className="btn btn-primary rounded-pill px-5 py-3" to="/movies/new">New Movie</NavLink>
                         }

@@ -2,7 +2,7 @@ const Input = ({ name, label, error, ...rest}) => {
 
     return ( 
         <div className="mb-3">
-            <label htmlFor={name} className="form-label">{label}</label>
+            <label htmlFor={name} className="form-label text-light">{label}</label>
             <input
                 {...rest}
                 name={name}

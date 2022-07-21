@@ -2,7 +2,7 @@ const Select = ({ name, label, options, error, ...rest}) => {
 
     return ( 
         <div className="mb-3">
-            <label htmlFor={name} className="form-label">{label}</label>
+            <label htmlFor={name} className="form-label text-light">{label}</label>
              <select className="form-select rounded-pill" name={name} id={name} {...rest}>
                 {
                     options.map(option => (

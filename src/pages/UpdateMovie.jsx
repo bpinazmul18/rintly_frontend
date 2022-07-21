@@ -84,7 +84,7 @@ class UpdateMovie extends Form {
                         </div>
                         <div className="col-md-6">
                             <div className="page-title mb-4">
-                                <h2 className='display-3'>Update Movie</h2>
+                                <h2 className='display-3 text-light'>Update Movie</h2>
                             </div>
                             <form onSubmit={this.handleSubmit}>
                                 {this.renderedInput('Title', 'text', 'title')}

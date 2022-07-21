@@ -1,6 +1,7 @@
 .list-group {
   .list-group-item {
     padding: 1.4rem 1.8rem;
+    background-color: $dark-400;
 
     &.active {
       background-color: $blue;

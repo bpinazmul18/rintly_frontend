@@ -53,7 +53,7 @@ class Login extends Form {
                         </div>
                         <div className="col-md-6">
                             <div className="page-title mb-4">
-                                <h2 className='display-3'>Login</h2>
+                                <h2 className='display-3 text-light'>Login</h2>
                             </div>
                             <form onSubmit={this.handleSubmit}>
                                 {this.renderedInput('Email address', 'text', 'email')}
