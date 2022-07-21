@@ -8,7 +8,9 @@ import configureStore from './store/configureStore'
 import logger from './services/logService'
 import reportWebVitals from './reportWebVitals';
 
-
+// Import css files
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css';

@@ -1,13 +1,19 @@
 import React from "react";
+import { Container } from "react-bootstrap";
+import Slider from "../components/slider";
 
 // eslint-disable-next-line
 export default function (props) {
     return (
-        <React.Fragment>
-            <div className="container">
-                Home page
-            </div>
-        </React.Fragment>
-        
+        <>
+            {/* Features section */}
+            <section className="features-section mb-4">
+                <div className="section-inner">
+                    <Container>
+                        <Slider/>
+                    </Container>
+                </div>
+            </section>
+        </>
     )
 }
