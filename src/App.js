@@ -20,7 +20,7 @@ const App = () => {
 
     useEffect(() => {
         const user = auth.getCurrentUser()
-        setUser({ user})
+        setUser(user)
     }, [])
 
     return (

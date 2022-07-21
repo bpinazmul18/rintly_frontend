@@ -7,24 +7,24 @@ import logo from '../assets/img/play-logo.png'
 
 
 const NavBar = ({ user }) => {
-        const navigate = useNavigate()
+    const navigate = useNavigate()
 
-        const handleLogout = () => {
-            window.location = '/logout'
-        }
+    const handleLogout = () => {
+        window.location = '/logout'
+    }
 
-        const renderLogout = () => (
-            <div>
-                <button onClick={() => handleLogout()} className="btn btn-primary px-4 rounded-pill ms-1">Logout</button>
-            </div>
-        )
+    const renderLogout = () => (
+        <div>
+            <button onClick={() => handleLogout()} className="btn btn-primary px-5 py-3 rounded-pill ms-1">Logout</button>
+        </div>
+    )
 
-        const renderLogin = () => (
-            <div>
-                <button onClick={() => navigate('/login')} className="btn btn-outline-primary px-4 rounded-pill me-1">Login</button>
-                <button onClick={() => navigate('/signup')} className="btn btn-primary px-4 rounded-pill ms-1">Register</button>
-            </div>
-        )
+    const renderLogin = () => (
+        <div>
+            <button onClick={() => navigate('/login')} className="btn btn-outline-primary px-5 py-3 rounded-pill me-1">Login</button>
+            <button onClick={() => navigate('/signup')} className="btn btn-primary px-5 py-3 rounded-pill ms-1">Register</button>
+        </div>
+    )
 
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

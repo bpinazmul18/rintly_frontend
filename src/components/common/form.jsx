@@ -57,7 +57,7 @@ class Form extends Component {
     }
 
     renderedButton (label) {
-        return <button disabled={this.validate()} type="submit" className="btn btn-outline-primary btn-lg rounded-pill px-5 mt-4">{label}</button>
+        return <button disabled={this.validate()} type="submit" className="btn btn-outline-primary btn-lg rounded-pill px-5 py-3 mt-4">{label}</button>
     }
 
     renderedInput (label, type, name) {
