@@ -26,11 +26,11 @@ const slice = createSlice({
             movies.list.push(action.payload)
         },
         movieRemoved: (movies, action) => {
-            const index = movies.list.findIndex((movie) => movie.id === action.payload.id)
+            const index = movies.list.findIndex((movie) => movie._id === action.payload.id)
             movies.list.splice(index, 1)
         },
         movieLiked: (movies, action) => {
-            const index = movies.list.findIndex((movie) => movie.id === action.payload.id)
+            const index = movies.list.findIndex((movie) => movie._id === action.payload.id)
             movies.list[index].liked = !movies.list[index].liked
         }
     }
