@@ -8,7 +8,7 @@ import { fetchGenres } from '../services/genres';
 import { withRouter } from '../components/with-router';
 import { toaster } from '../components/common/toaster';
 
-class movieForm extends Form {
+class UpdateMovie extends Form {
     state = {
         data: {
             title: '',
@@ -101,4 +101,4 @@ class movieForm extends Form {
     }
 }
  
-export default withRouter(movieForm);
+export default withRouter(UpdateMovie);

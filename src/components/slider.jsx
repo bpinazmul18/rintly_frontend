@@ -1,8 +1,9 @@
+import React from "react";
 import ReactSlider from 'react-slick'
 import SliderItem from './common/slider-item';
 
 const Slider = () => {
-    var settings = {
+    const settings = {
         dots: true,
         infinite: true,
         speed: 500,
@@ -13,7 +14,7 @@ const Slider = () => {
       
     return ( 
         <ReactSlider {...settings}>
-            {[1,2,4].map(item => <SliderItem/>)}
+            {[1,2,4].map(item => <SliderItem key={item}/>)}
         </ReactSlider>
      );
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import { NavLink } from "react-router-dom";
 import {connect} from "react-redux"
 
@@ -110,7 +110,7 @@ class Movies extends Component {
         const {totalCount, data} = this.getPagedData()
 
         return (
-            <React.Fragment>
+            <>
                 <div className="container movies-page py-5">
                     <div className="d-flex align-items-center justify-content-between">
                         <p className='lead'>There are {totalCount} movies in the database.</p>
@@ -135,7 +135,7 @@ class Movies extends Component {
                         </div>
                     </div>
                 </div>
-            </React.Fragment>
+            </>
         );
     }
 }
