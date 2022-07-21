@@ -1,0 +1,19 @@
+.shadow {
+  box-shadow: $shadow!important;
+
+  &-sm {
+    box-shadow: $shadow-sm!important;
+  }
+
+  &-md {
+    box-shadow: $shadow-md!important;
+  }
+
+  &-lg {
+    box-shadow: $shadow-lg!important;
+  }
+
+  &-xl {
+    box-shadow: $shadow-xl!important;
+  }
+}

@@ -1,0 +1,32 @@
+.table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  border-style: hidden;
+
+  width:100%;
+  max-width: 100%;
+
+  thead {
+    th {
+      text-transform: capitalize;
+      color: $dark-300;
+      font-size: 1.4rem;
+      line-height: 1.4rem;
+      padding: 1rem 2rem;
+      transition: border-bottom-color, color 0.3s ease;
+    }
+  }
+  tbody {
+    tr {
+      td {
+        text-transform: capitalize;
+        color: $dark-300;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+        padding: 1rem 2rem;
+        transition: background-color 0.1ms ease;
+        vertical-align: middle;
+      }
+    }
+  }
+}

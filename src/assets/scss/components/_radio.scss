@@ -1,0 +1,26 @@
+.form-radio {
+  position: relative;
+  width: 100%;
+  min-height: 7rem;
+  overflow: hidden;
+  
+  .form-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .form-check {
+    position: absolute;
+    top: calc(50% - .7rem);
+    right: calc(0% + 2rem);
+    background-color: $blue;
+  }
+}

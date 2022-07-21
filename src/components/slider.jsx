@@ -4,7 +4,8 @@ import SliderItem from './common/slider-item';
 
 const Slider = () => {
     const settings = {
-        dots: true,
+        dots: false,
+        arrow: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,

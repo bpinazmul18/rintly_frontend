@@ -1,0 +1,52 @@
+//////////////////////////////////////////
+// Background color light
+.bg-blue {
+  background: $blue !important;
+}
+
+.bg {
+  &-light {
+    background-color: $light !important;
+
+    &-100 {
+      background-color: $light-100 !important;
+    }
+
+    &-200 {
+      background-color: $light-200 !important;
+    }
+
+    &-300 {
+      background: $light-300 !important;
+    }
+  }
+
+  &-dark {
+    &-100 {
+      background-color: $dark-100 !important;
+    }
+
+    &-200 {
+      background-color: $dark-200 !important;
+    }
+
+    &-400 {
+      background: $dark-400 !important;
+    }
+  }
+
+  &-primary {
+    background-color: $blue !important;
+
+    &-200 {
+      background-color: $blue-200 !important;
+    }
+  }
+
+  &-danger {
+    &-200 {
+      background-color: $danger-200 !important;
+    }
+  }
+}
+

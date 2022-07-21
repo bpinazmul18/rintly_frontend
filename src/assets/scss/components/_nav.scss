@@ -1,0 +1,21 @@
+.nav {
+  &.nav-tabs {
+    .nav-item {
+      button {
+        &.nav-link {
+          color: $dark-100;
+          font-size: 1.4rem;
+          line-height: normal;
+          border-color: transparent;
+          padding: 1rem 2rem;
+          transition: border-bottom-color, color 0.3s ease;
+
+          &.active {
+            color: $blue;
+            border-bottom-color: $blue;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,118 @@
+////////////////////////////////////
+// Button background color
+
+.btn {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.2rem;
+  //border-radius: 3.2rem;
+  //padding: 1rem 2rem;
+
+  &-success {
+    &-muted {
+      background-color: $success-100;
+      border-color: $success-100;
+      color: $success;
+
+      &:hover {
+        background-color: $success-100;
+        border-color: $success;
+        color: $success;
+      }
+    }
+  }
+
+  &-primary {
+    background-color: $blue;
+    border-color: $blue;
+
+    &:hover {
+      background-color: rgba(125, 95, 255, .8);
+      border-color: rgba(125, 95, 255, .8);
+    }
+
+    &:focus {
+      background-color: rgba(125, 95, 255, .8);
+      border-color: rgba(125, 95, 255, .8);
+    }
+
+    &-muted {
+      background-color: $primary-100;
+      border-color: $primary-100;
+      color: $primary;
+
+      &:hover {
+        background-color: $primary-100;
+        border-color: $primary;
+        color: $primary;
+      }
+    }
+  }
+
+  &-warning {
+    &-muted {
+      background-color: $warning-100;
+      border-color: $warning-100;
+      color: $warning;
+
+      &:hover {
+        background-color: $warning-100;
+        border-color: $warning;
+        color: $warning;
+      }
+    }
+  }
+
+  &-danger {
+    &-muted {
+      background-color: $danger-100;
+      border-color: $danger-100;
+      color: $danger;
+
+      &:hover {
+        background-color: $danger-100;
+        border-color: $danger;
+        color: $danger;
+      }
+    }
+  }
+
+  // outline button
+  &-outline {
+    &-success {
+      background-color: transparent;
+      border-color: transparent;
+      color: $success;
+
+      &:hover {
+        background-color: $success-100;
+        border-color: $success-100;
+        color: $success;
+      }
+    }
+    &-primary {
+      background-color: transparent;
+      border-color: $blue;
+      color: $blue;
+
+      &:hover {
+        background-color: $blue;
+        border-color: $blue;
+        color: $light;
+
+        .google-icon {
+          svg {
+            fill: $light;
+          }
+        }
+      }
+
+      .google-icon {
+        svg {
+          width: 1.2rem;
+          fill: $blue;
+        }
+      }
+    }
+  }
+}

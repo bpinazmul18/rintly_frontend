@@ -1,0 +1,12 @@
+.form-check {
+  .form-check-label {
+    line-height: 2rem;
+
+    .form-check-input {
+      border-color: $blue;
+      &:checked {
+        background-color: $blue;
+      }
+    }
+  }
+}

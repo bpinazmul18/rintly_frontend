@@ -1,6 +1,15 @@
+import {Container, Row, Col} from "react-bootstrap";
+
 const SliderItem = () => {
     return (
-        <div>hi</div>
+        <div className="slider-item">
+            <Container>
+                <Row>
+                    <Col md={6}>hi</Col>
+                    <Col md={6}>hello</Col>
+                </Row>
+            </Container>
+        </div>
     )
 }
  

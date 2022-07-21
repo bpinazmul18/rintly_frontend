@@ -28,6 +28,7 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "reselect": "^4.1.6",
+    "sass": "^1.53.0",
     "serve": "^14.0.1",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.0"

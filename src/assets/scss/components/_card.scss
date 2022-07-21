@@ -1,0 +1,35 @@
+.card {
+  box-shadow: rgba(100, 100, 111, 0.2) 0 .7rem 2.9rem 0;
+
+  .card-img-top {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .card-body {
+    h5 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 2.4rem;
+      color: $dark-200;
+
+      @media only screen and (max-width: 767px) {
+        font-size: 1.4rem;
+        line-height: 1.8rem;
+      }
+    }
+
+    p {
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 2.2rem;
+      color: $dark-200;
+
+      @media only screen and (max-width: 767px) {
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+      }
+    }
+  }
+}

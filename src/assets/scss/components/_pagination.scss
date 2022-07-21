@@ -1,0 +1,36 @@
+.pagination {
+  .page-item {
+
+    &.active {
+      .page-link {
+        color: $light;
+        background-color: $blue;
+        border-color: $blue;
+
+        &:hover {
+          color: $light;
+          background-color: $blue;
+          border-color: $blue;
+        }
+      }
+    }
+    .page-link {
+      font-size: 1.4rem;
+      line-height: 1.4rem;
+      font-weight: 400;
+      color: $blue;
+
+      &:hover {
+        color: $light;
+        background-color: $blue;
+        border-color: $blue;
+      }
+
+      &:focus {
+        color: $light;
+        background-color: $blue-200;
+        border-color: $blue-200;
+      }
+    }
+  }
+}

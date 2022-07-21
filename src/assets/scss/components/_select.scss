@@ -1,0 +1,14 @@
+.form-select {
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 2rem;
+  color: $dark-200;
+  border: 0.1rem solid $blue-300;
+  padding: 0.6rem 2rem;
+  border-radius: 3.2rem;
+
+  &:focus {
+    border-color: $blue-300;
+    box-shadow: 0 0 0 0.25rem $blue-300;
+  }
+}

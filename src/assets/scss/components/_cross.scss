@@ -1,0 +1,17 @@
+.x-icon {
+  border: 0.1rem solid $blue;
+  width: 3rem;
+  height: 3rem;
+  display: block;
+  color: $blue;
+  text-align: center;
+  padding: 0.8rem;
+  border-radius: 50%;
+  transition: color 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    color: $blue-300;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 0.8rem 2.4rem;
+  }
+}
