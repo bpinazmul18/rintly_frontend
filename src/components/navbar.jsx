@@ -27,7 +27,7 @@ const NavBar = ({ user }) => {
     )
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" className="bg-dark-400" variant="dark">
             <Container>
                 <Navbar.Brand href="home">
                     <img className='w-25' src={logo} alt="Play logo"/>

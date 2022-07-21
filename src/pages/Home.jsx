@@ -7,7 +7,7 @@ export default function (props) {
     return (
         <>
             {/* Features section */}
-            <section className="features-section py-5 mb-4">
+            <section className="features-section bg-dark py-5 mb-4">
                 <div className="section-inner">
                     <Container>
                         <Slider/>
