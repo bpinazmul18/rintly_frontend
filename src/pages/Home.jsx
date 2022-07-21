@@ -35,7 +35,7 @@ export default function (props) {
                                     </div>
 
                                     <div className="card-body">
-                                        <h4 className="text-light">Add new Movie</h4>
+                                        <h4 className="h3 text-light">Add new Movie</h4>
                                         <p className="lead text-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dolores nesciunt quia ratione.</p>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@ export default function (props) {
                                     </div>
 
                                     <div className="card-body">
-                                        <h4 className="text-light">Rent Movie</h4>
+                                        <h4 className="h3 text-light">Rent Movie</h4>
                                         <p className="lead text-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dolores nesciunt quia ratione</p>
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@ export default function (props) {
                                     </div>
 
                                     <div className="card-body">
-                                        <h4 className="text-light">Profit</h4>
+                                        <h4 className="h3 text-light">Profit</h4>
                                         <p className="lead text-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dolores nesciunt quia ratione</p>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@ export default function (props) {
                                     </div>
 
                                     <div className="card-body">
-                                        <h4 className="text-light">Bonus</h4>
+                                        <h4 className="h3 text-light">Bonus</h4>
                                         <p className="lead text-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto dolores nesciunt quia ratione</p>
                                     </div>
                                 </div>
