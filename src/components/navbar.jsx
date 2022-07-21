@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { Container, Nav, Navbar } from 'react-bootstrap'
 
 import NavItem from './common/nav-item';
@@ -29,7 +29,7 @@ const NavBar = ({ user }) => {
     return (
         <Navbar collapseOnSelect expand="lg" className="bg-dark-400" variant="dark">
             <Container>
-                <Navbar.Brand href="home">
+                <Navbar.Brand to="/" as={Link}>
                     <img className='w-25' src={logo} alt="Play logo"/>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
