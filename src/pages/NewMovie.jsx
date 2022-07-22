@@ -4,11 +4,10 @@ import {connect} from "react-redux"
 
 import joinImg from '../assets/img/movie.svg'
 import Form from '../components/common/form';
-import { addMovie } from '../services/movies';
 import { fetchGenres } from '../services/genres';
 import { withRouter } from '../components/with-router';
 import { toaster } from '../components/common/toaster';
-import { movieAdded} from "../store/movies";
+import { addMovie} from "../store/movies";
 
 class NewMovie extends Form {
     state = {
@@ -38,9 +37,8 @@ class NewMovie extends Form {
     doSubmit = async () => {
         // calling the api
         try {
-            this.props.movieAdded(this.state.data)
-            await addMovie(this.state.data)
-            toaster('success', '😎 Successfully Added!')
+            this.props.addMovie(this.state.data)
+            // toaster('success', '😎 Successfully Added!')
             this.props.router.navigate('/movies')
         } catch (ex) {
             if (ex.response && ex.response.status === 404)
@@ -79,7 +77,8 @@ class NewMovie extends Form {
 const mapStateToProps = state => ({})
 
 const mapDispatchToProps = dispatch => ({
-    movieAdded: (movie) => dispatch(movieAdded(movie)),
+    // movieAdded: (movie) => dispatch(movieAdded(movie)),
+    addMovie: (movie) => dispatch(addMovie(movie))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(NewMovie))
