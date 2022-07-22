@@ -61,3 +61,9 @@ export const addMovie = movie => apiCallBegan({
     data: movie,
     onSuccess: movieAdded.type
 })
+
+export const removeMovie = id => apiCallBegan({
+    url: `${url}/${id}`,
+    method: 'delete',
+    onSuccess: movieRemoved.type
+})

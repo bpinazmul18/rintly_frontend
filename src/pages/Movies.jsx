@@ -4,13 +4,12 @@ import {connect} from "react-redux"
 
 import _ from 'lodash'
 import MovieTable from '../components/movie-table';
-import { deleteMovie } from '../services/movies';
 import Pagination from '../components/common/pagination';
 import { pagination } from '../utils/pagination';
 import Genres from '../components/genres';
 import SearchBox from '../components/common/search-box';
 import { toaster } from '../components/common/toaster';
-import {loadMovies, movieLiked} from "../store/movies";
+import {loadMovies, movieLiked, removeMovie} from "../store/movies";
 import {loadGenres} from "../store/genres";
 
 class Movies extends Component {
@@ -30,8 +29,7 @@ class Movies extends Component {
          try {
             const movies = originalMovies.filter((movie) => movie._id !== id)
             this.setState({ movies })
-
-            await deleteMovie(id)
+            this.props.removeMovie(id)
 
             toaster('success', 'Successfully Delete!')
         } catch (ex) {
@@ -148,7 +146,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     loadMovies: () => dispatch(loadMovies()),
     loadGenres: () => dispatch(loadGenres()),
-    movieLiked: (id) => dispatch(movieLiked(id))
+    movieLiked: (id) => dispatch(movieLiked(id)),
+    removeMovie: (id) => dispatch(removeMovie(id))
 })
 
 
