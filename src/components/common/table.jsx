@@ -5,10 +5,12 @@ import TableHeader from "./table-header";
 const Table = ({columns, onSort, sortColumn, data}) => {
 
     return ( 
-        <table className="table bg-dark-400 rounded-2">
-            <TableHeader columns={columns} onSort={onSort} sortColumn={sortColumn}/>
-            <TableBody columns={columns} data={data}/>
-        </table>
+        <div className="table-responsive">
+            <table className="table bg-dark-400 rounded-2">
+                <TableHeader columns={columns} onSort={onSort} sortColumn={sortColumn}/>
+                <TableBody columns={columns} data={data}/>
+            </table>
+        </div>
      );
 }
  
